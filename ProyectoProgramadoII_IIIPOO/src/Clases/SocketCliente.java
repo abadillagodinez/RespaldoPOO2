@@ -14,7 +14,7 @@ public class SocketCliente {
         System.out.println("Conectado");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());//devuelve flujo
         ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());//recibe flujo
-        Platillo pollo = new Platillo("Pollo",5000,"imagen");    //Cliente crea objeto \
+        Platillo pollo = new Platillo("Pollo",5000,100);    //Cliente crea objeto \
         System.out.println("listo para enviar");
         objectOutputStream.writeObject(pollo);
         System.out.println("enviado");

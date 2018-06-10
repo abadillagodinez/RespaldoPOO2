@@ -16,15 +16,17 @@ public class Platillo implements Serializable{      //Cada clase que quiere pasa
     protected String tipoPorcion;//deecripcion del tipo de porcion ejemplo plato, taza, unidades burrito, cucharadas etc
     protected String codClave;// ID del plato, dependera si es bebida, postre, entrada o principal              creo que este esta de mas por que hicieron una clase tipoPlatillo
     protected static int cantidadPlatos;//todos los platos se aumenta desde cualquiera delos hijos
+    private int calorias;
     //protected Historial historial = Historial.getInstance();
     //protected TipoPlatillo tipoPlatillo;                      //comente estos dos porque ambos deben ser serializables
     
     public String resulSocket;                                  //agregue esto para ver si funcionaba el socket
 
-    public Platillo(String nombre, double precio,String imagen){
+    public Platillo(String nombre, double precio,int calorias){
         this.nombre = nombre;
         this.precio = precio;
-        this.imagen = imagen;
+        this.calorias = calorias;
+        
         
     }
     public Boolean getHabilitado() {
@@ -47,6 +49,13 @@ public class Platillo implements Serializable{      //Cada clase que quiere pasa
         return descripcion;
     }
 
+    public int getCalorias() {
+        return calorias;
+    }
+
+    public void setCalorias(int cal) {
+        this.calorias = cal;
+    }
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }

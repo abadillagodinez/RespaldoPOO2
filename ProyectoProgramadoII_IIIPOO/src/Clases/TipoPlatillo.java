@@ -5,10 +5,7 @@
  */
 package Clases;
 
-/**
- *
- * @author Sir Than II
- */
+
 public enum TipoPlatillo {
     ETR,PRN,PTR;
 }

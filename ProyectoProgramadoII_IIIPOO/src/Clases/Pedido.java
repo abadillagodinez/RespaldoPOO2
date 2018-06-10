@@ -22,9 +22,20 @@ public class Pedido {
     private String direccion;
     private double valorExpress;
     private double valorEmpaque;
-    private TipoPedido tipoPedido;
+    private String tipoPedido;  //lo puse string no enum por mientras
+    private OrdenCliente[] platillos;
     
-
+    public Pedido(String nombreCliente,String sitio,String direccion,double valorExpress,double valorEmpaque,String tipo,OrdenCliente[] platillos){
+        this.nombreCliente= nombreCliente;
+        this.sitio = sitio;
+        this.direccion = direccion;
+        this.valorExpress = valorExpress;
+        this.valorEmpaque = valorEmpaque;
+        this.tipoPedido = tipo;
+        this.platillos = platillos;
+        
+        
+    }
     public Date getFecha() {
         return fecha;
     }
@@ -47,6 +58,13 @@ public class Pedido {
 
     public void setSitio(String sitio) {
         this.sitio = sitio;
+    }
+    public OrdenCliente[] getPlatillos() {
+        return platillos;
+    }
+
+    public void setPlatillos(OrdenCliente[] platillo) {
+        this.platillos = platillo;
     }
 
     public String getDireccion() {
@@ -72,7 +90,7 @@ public class Pedido {
     public void setValorEmpaque(double valorEmpaque) {
         this.valorEmpaque = valorEmpaque;
     }
-
+    /*
     public TipoPedido getTipoPedido() {
         return tipoPedido;
     }
@@ -81,6 +99,6 @@ public class Pedido {
         this.tipoPedido = tipoPedido;
     }
     
-    
+    */
 
 }
