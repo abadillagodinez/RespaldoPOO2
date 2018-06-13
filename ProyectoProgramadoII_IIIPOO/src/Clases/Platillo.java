@@ -10,15 +10,17 @@ public class Platillo implements Serializable{      //Cada clase que quiere pasa
     protected Boolean habilitado;//si esta disponible para el publico
     protected String nombre;//nombre del platillo
     protected String descripcion;
-    private String imagen; //el atributo imagen 
+    protected byte[] imagen; //el atributo imagen 
     protected double precio;
     protected int cantPedidos;//cada vez que se pide uno esto debe de incrementear
     protected String tipoPorcion;//deecripcion del tipo de porcion ejemplo plato, taza, unidades burrito, cucharadas etc
     protected String codClave;// ID del plato, dependera si es bebida, postre, entrada o principal              creo que este esta de mas por que hicieron una clase tipoPlatillo
     protected static int cantidadPlatos;//todos los platos se aumenta desde cualquiera delos hijos
-    private int calorias;
+    protected int calorias;
+    private double kilokcalPorGramo;
+    private double gramosPorPorcion;
     //protected Historial historial = Historial.getInstance();
-    //protected TipoPlatillo tipoPlatillo;                      //comente estos dos porque ambos deben ser serializables
+    protected TipoPlatillo tipoPlatillo;                      //comente estos dos porque ambos deben ser serializables
     
     public String resulSocket;                                  //agregue esto para ver si funcionaba el socket
 
@@ -106,7 +108,7 @@ public class Platillo implements Serializable{      //Cada clase que quiere pasa
 
     public void setHistorial(Historial historial) {
         this.historial = historial;
-    }
+    }*/
 
     public TipoPlatillo getTipoPlatillo() {
         return tipoPlatillo;
@@ -115,16 +117,61 @@ public class Platillo implements Serializable{      //Cada clase que quiere pasa
     public void setTipoPlatillo(TipoPlatillo tipoPlatillo) {
         this.tipoPlatillo = tipoPlatillo;
     }
-*/
+
     public void setSocket(String p){
         this.resulSocket = p ;
     }
     public String getSocket(){
         return resulSocket;
     }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+
+    public double getKilokcalPorGramo() {
+        return kilokcalPorGramo;
+    }
+
+    public void setKilokcalPorGramo(double kilokcalPorGramo) {
+        this.kilokcalPorGramo = kilokcalPorGramo;
+    }
+
+    public double getGramosPorPorcion() {
+        return gramosPorPorcion;
+    }
+
+    public void setGramosPorPorcion(double gramosPorPorcion) {
+        this.gramosPorPorcion = gramosPorPorcion;
+    }
     
     
     
+    @Override
+    public String toString(){
+        String s="";
+        s+= "Habilitado: "+habilitado.toString()+"\t";
+        s+= "Nombre: "+ nombre+"\t";
+        s+= "Descripcion: "+ descripcion+"\t";
+        s+= "Precio :" + String.valueOf(precio)+"\t";
+        s+= "Cantidad de veces pedido: " + String.valueOf(cantPedidos)+"\t";
+        s+= "Tipo de Porcion: "+ tipoPorcion+"\t";
+        s+= "Codigo clave: " + codClave+"\t";
+        s+= "Calorias por porcion: " + String.valueOf(calorias)+"\t";
+        if(tipoPlatillo.equals(TipoPlatillo.BEB)){
+            s+= "KiloCaloria por Minilitro: " + String.valueOf(kilokcalPorGramo)+"\t";
+            s+= "Minilitro por porcion : "+ String.valueOf(gramosPorPorcion)+"\t"; 
+        }else{
+            s+= "KiloCaloria por Gramo: " + String.valueOf(kilokcalPorGramo)+"\t";
+            s+= "Gramos por porcion : "+ String.valueOf(gramosPorPorcion)+"\t";  
+        }
+        
+        return s;
+    }
 
 
 

@@ -7,5 +7,5 @@ package Clases;
 
 
 public enum TipoPlatillo {
-    ETR,PRN,PTR;
+    ETR,PRN,PTR,BEB;
 }

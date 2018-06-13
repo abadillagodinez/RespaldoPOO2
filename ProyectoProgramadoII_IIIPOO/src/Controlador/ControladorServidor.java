@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 package Controlador;
+import Clases.Platillo;
 import Clases.SocketServidor;
 import Vista.Servidor.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,6 +22,7 @@ import javax.swing.JOptionPane;
 public class ControladorServidor implements ActionListener{
     private VentanaPrincipalServidor ventana;
     private SocketServidor servidor;
+    private ArrayList<Platillo> platillos;
     
     public ControladorServidor(VentanaPrincipalServidor ventana) throws IOException{
         this.ventana = ventana;
@@ -42,15 +45,35 @@ public class ControladorServidor implements ActionListener{
     public void actionPerformed(ActionEvent e){
         switch(e.getActionCommand()){
             case "Catálogo":
-                VentanaCatalogo venCatalogo = new VentanaCatalogo();
+                VentanaCatalogo venCatalogo = new VentanaCatalogo(platillos);
                 venCatalogo.setVisible(true);
                 break;
             case "Top 10":
-                VentanaTop10 nuevaTop10 = new VentanaTop10();
+                ArrayList<Platillo> top10=new ArrayList<>();
+                for(Platillo platillo:platillos){
+                    if(top10.size()<10){
+                        top10.add(platillo);
+                    }else{
+                        for(Platillo platillo2:top10){
+                            if(platillo.getCantPedidos()>platillo2.getCantPedidos()){
+                                top10.remove(platillo2);
+                                top10.add(platillo);
+                                break;
+                            }
+                        }
+                    }
+                }
+                VentanaTop10 nuevaTop10= new VentanaTop10(top10);
                 nuevaTop10.setVisible(true);
                 break;
             case "Top 0":
-                VentanaTop0 nuevaTop0 = new VentanaTop0();
+                ArrayList<Platillo> top0=new ArrayList<>();
+                for(Platillo platillo:platillos){
+                    if(platillo.getCantPedidos()==0){
+                        top0.add(platillo);
+                    }
+                }
+                VentanaTop10 nuevaTop0= new VentanaTop10(top0);
                 nuevaTop0.setVisible(true);
                 break;
             case "Historial":
