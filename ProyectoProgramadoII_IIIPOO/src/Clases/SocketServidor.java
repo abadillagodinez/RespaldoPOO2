@@ -7,6 +7,7 @@ package Clases;
 
 import java.net.*;
 import java.io.*;
+import Controlador.ControladorServidor;
 
 
 
@@ -14,7 +15,7 @@ import java.io.*;
 
 public class SocketServidor {
 
-	 
+    private ControladorServidor controlador;
     public static boolean state = true;
     public static final int PORT = 4444;        //Puerto de conexion
     public static Socket socket;
@@ -26,7 +27,7 @@ public class SocketServidor {
         ServerSocket serverSocket = new ServerSocket(PORT); //conecta al puerto
         System.out.println("Listo para conexiones...");
         
-        Platillo[] platos;
+        Platillo[] plato;
         String funcion;
         
         while (state){ 
@@ -38,20 +39,20 @@ public class SocketServidor {
                 funcion = (String) objectInputStream.readObject();
             if (funcion!= null){
                 if(funcion.equals("borrar")){
-                    platos = (Platillo[]) objectInputStream.readObject();//esto es solo para que lea algo, aunque realmente no hace nada
+                    plato = (Platillo[]) objectInputStream.readObject();//esto es solo para que lea algo, aunque realmente no hace nada
                     System.out.println("Se borro con exito");
                 }
                 if (funcion.equals("generarOrden")){
-                    platos = (Platillo[]) objectInputStream.readObject();
-                    Platillo[] listaPlatos = platos; //Dado el flujo recibido, recibe un  objeto, en este caso es el Platillo que yo se que lo envia
-                    
-                    probar(listaPlatos); //pruebo si sirve                            //sino habria que captar entradas de forma mas general para castearlo.
+                    plato = (Platillo[]) objectInputStream.readObject();
+                    Platillo[] pollo = plato; //Dado el flujo recibido, recibe un  objeto, en este caso es el Platillo que yo se que lo envia
                 
-                    objectOutputStream.writeObject(listaPlatos);
+                    probar(pollo); //pruebo si sirve                            //sino habria que captar entradas de forma mas general para castearlo.
+                
+                    objectOutputStream.writeObject(pollo);
                     System.out.println("se genero la orden con exito");
                 }
                 if(funcion.equals("cerrar")){
-                    platos = (Platillo[]) objectInputStream.readObject();//esto es solo para que lea algo, aunque realmente no hace nada
+                    plato = (Platillo[]) objectInputStream.readObject();//esto es solo para que lea algo, aunque realmente no hace nada
                     SocketServidor.state = false;
                     System.out.println("se cerro el servidor");
                 }
@@ -71,6 +72,10 @@ public class SocketServidor {
     private void probar(Platillo[] p){
         p[0].setSocket(p[0].nombre);      //devuelve nombre de platillo dado por cliente
         
+    }
+    
+    public void setControlador(ControladorServidor controlador){
+        this.controlador = controlador;
     }
     
     

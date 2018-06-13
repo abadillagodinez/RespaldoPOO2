@@ -5,6 +5,7 @@
  */
 package Vista.Servidor;
 
+import Controlador.ControladorServidor;
 import sun.text.normalizer.CharTrie;
 
 /**
@@ -12,7 +13,7 @@ import sun.text.normalizer.CharTrie;
  * @author retr0
  */
 public class VentanaPrincipalServidor extends javax.swing.JFrame {
-
+    ControladorServidor controlador;
     /**
      * Creates new form VentanaPrincipalServidor
      */
@@ -20,6 +21,9 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
         initComponents();
     }
     
+    public void setControlador(ControladorServidor controlador){
+        this.controlador = controlador;
+    }
 
     
     /**
@@ -76,6 +80,7 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
         btnStats = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ventanita administrador");
         setResizable(false);
 
         btnTop10.setText("Top 10");
@@ -99,10 +104,20 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
         jLabel1.setText("₡:");
 
         btnValorPaquete.setText("Valor paquete");
+        btnValorPaquete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValorPaqueteActionPerformed(evt);
+            }
+        });
 
         btnValorExpress.setText("Valor express");
 
         btnStats.setText("Estadísticas");
+        btnStats.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStatsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,6 +175,14 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
     private void btnTop10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTop10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTop10ActionPerformed
+
+    private void btnValorPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValorPaqueteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnValorPaqueteActionPerformed
+
+    private void btnStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnStatsActionPerformed
 
     
 

@@ -64,9 +64,7 @@ public class reader {
                System.out.println("cantidadPlatos : " 
                   + eElement.getElementsByTagName("CantPlatos").item(0).getTextContent());
                platillo.setCantidadPlatos(Integer.parseInt(eElement.getElementsByTagName("CantPlatos").item(0).getTextContent()));
-               System.out.println("calorias : " 
-                  + eElement.getElementsByTagName("calorias").item(0).getTextContent());
-               platillo.setCantidadPlatos(Integer.parseInt(eElement.getElementsByTagName("calorias").item(0).getTextContent()));
+               
                
                listaPlatillos[temp] = platillo;
                
