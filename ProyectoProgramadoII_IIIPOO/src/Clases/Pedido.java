@@ -6,12 +6,12 @@
 package Clases;
 
 import java.util.Date;
-
+import java.io.Serializable;
 /**
  *
  * @author Sir Than II
  */
-public class Pedido {
+public class Pedido implements Serializable  {
 
     public Pedido() {
     }
@@ -24,6 +24,7 @@ public class Pedido {
     private double valorEmpaque;
     private String tipoPedido;  //lo puse string no enum por mientras
     private OrdenCliente[] platillos;
+    public String resulSocket;
     
     public Pedido(String nombreCliente,String sitio,String direccion,double valorExpress,double valorEmpaque,String tipo,OrdenCliente[] platillos){
         this.nombreCliente= nombreCliente;
@@ -36,6 +37,15 @@ public class Pedido {
         
         
     }
+    
+    public void setSocket(String p){
+        this.resulSocket = p ;
+    }
+    public String getSocket(){
+        return resulSocket;
+    }
+    
+    
     public Date getFecha() {
         return fecha;
     }
