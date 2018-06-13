@@ -45,15 +45,13 @@ public class SocketServidor {
                 if (funcion.equals("generarOrden")){
                     plato = (Platillo[]) objectInputStream.readObject();
                     Platillo[] pollo = plato; //Dado el flujo recibido, recibe un  objeto, en este caso es el Platillo que yo se que lo envia
-<<<<<<< HEAD
-                
+
                     probar(pollo); //pruebo si sirve                            //sino habria que captar entradas de forma mas general para castearlo.
                 
-=======
-                
+
                     probar(pollo); //pruebo si sirve                            //sino habria que captar entradas de forma mas general para castearlo.
                 
->>>>>>> master
+
                     objectOutputStream.writeObject(pollo);
                     System.out.println("se genero la orden con exito");
                 }
