@@ -47,7 +47,7 @@ public class SocketServidor {
                 funcion = (String) objectInputStream.readObject();
             if (funcion!= null){
                 if (funcion.equals("generarOrden")){
-                    System.out.println("111111sdafasd");
+                    
                     pedido = (Pedido) objectInputStream.readObject();
                     //probar(pedido); //pruebo si sirve                            //sino habria que captar entradas de forma mas general para castearlo.
                     
