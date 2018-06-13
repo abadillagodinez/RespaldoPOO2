@@ -82,12 +82,6 @@ public class writer {
 		cantPlatos.appendChild(doc.createTextNode(Integer.toString(platillos[cont].getCantidadPlatos())));
 		platillo.appendChild(cantPlatos);
                 
-                Element calorias = doc.createElement("calorias");
-		calorias.appendChild(doc.createTextNode(Integer.toString(platillos[cont].getCalorias())));
-		platillo.appendChild(calorias);
-                
-                
-                
                 
                 
                 cont++;
@@ -124,7 +118,6 @@ public class writer {
         platillito.setCantPedidos(10);
         platillito.setTipoPorcion("plato");
         platillito.setCantidadPlatos(3);
-        platillito.setCalorias(100);
         Platillo[] lista = new Platillo[2];
         lista[0]= platillito;
         Platillo platillito2 = new Platillo();
@@ -136,9 +129,8 @@ public class writer {
         platillito2.setCantPedidos(12);
         platillito2.setTipoPorcion("plato");
         platillito2.setCantidadPlatos(6);
-        platillito2.setCalorias(200);
         lista[1] = platillito2;
-        //System.out.println(lista[0].getNombre());
+        System.out.println(lista[0].getNombre());
         xml.Writer(lista);
         
         
