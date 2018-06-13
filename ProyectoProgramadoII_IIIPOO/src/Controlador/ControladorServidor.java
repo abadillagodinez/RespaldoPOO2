@@ -8,6 +8,9 @@ import Clases.SocketServidor;
 import Vista.Servidor.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +21,7 @@ public class ControladorServidor implements ActionListener{
     private VentanaPrincipalServidor ventana;
     private SocketServidor servidor;
     
-    public ControladorServidor(VentanaPrincipalServidor ventana){
+    public ControladorServidor(VentanaPrincipalServidor ventana) throws IOException{
         this.ventana = ventana;
         this.ventana.btnCatalogo.addActionListener((ActionListener) this);
         this.ventana.btnHistorial.addActionListener((ActionListener) this);
@@ -27,7 +30,13 @@ public class ControladorServidor implements ActionListener{
         this.ventana.btnTop10.addActionListener((ActionListener) this);
         this.ventana.btnValorExpress.addActionListener((ActionListener) this);
         this.ventana.btnValorPaquete.addActionListener((ActionListener) this);
+        this.ventana.setVisible(true);
         servidor = new SocketServidor();
+        try {
+            servidor.runServer();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ControladorServidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void actionPerformed(ActionEvent e){
@@ -35,9 +44,32 @@ public class ControladorServidor implements ActionListener{
             case "Catálogo":
                 VentanaCatalogo venCatalogo = new VentanaCatalogo();
                 venCatalogo.setVisible(true);
+                break;
             case "Top 10":
                 VentanaTop10 nuevaTop10 = new VentanaTop10();
                 nuevaTop10.setVisible(true);
+                break;
+            case "Top 0":
+                VentanaTop0 nuevaTop0 = new VentanaTop0();
+                nuevaTop0.setVisible(true);
+                break;
+            case "Historial":
+                VentanaHistorial nuevaHis = new VentanaHistorial();
+                nuevaHis.setVisible(true);
+                break;
+            case "Valor paquete":
+                //cambia el valor del paquete
+                System.out.println("digamos que lo cambio");
+                break;
+            case "Valor express":
+                //cambia el valor del express
+                System.out.println("digamos que lo cambioX2");
+                break;
+            case "Estadísticas":
+                VentanaEstadisticas nuevaEstadisticas = new VentanaEstadisticas();
+                nuevaEstadisticas.setVisible(true);
+                break;
+                
         }        
     }
     
@@ -72,8 +104,13 @@ public class ControladorServidor implements ActionListener{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ControladorServidor cont = new ControladorServidor(new VentanaPrincipalServidor());
-                cont.getPrincipal().setVisible(true);
+                ControladorServidor cont;
+                try {
+                    cont = new ControladorServidor(new VentanaPrincipalServidor());
+                    cont.getPrincipal().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorServidor.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
