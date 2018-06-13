@@ -5,6 +5,8 @@
  */
 package Vista.Servidor;
 
+import sun.text.normalizer.CharTrie;
+
 /**
  *
  * @author retr0
@@ -17,6 +19,7 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
     public VentanaPrincipalServidor() {
         initComponents();
     }
+    
 
     
     /**
@@ -76,6 +79,11 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
         setResizable(false);
 
         btnTop10.setText("Top 10");
+        btnTop10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTop10ActionPerformed(evt);
+            }
+        });
 
         btnTop0.setText("Top 0");
 
@@ -112,10 +120,9 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnStats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnValorExpress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnValorPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txfNuevoValor)))
+                    .addComponent(btnValorExpress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnValorPaquete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txfNuevoValor, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -150,16 +157,20 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
         nueva.setVisible(true);
     }//GEN-LAST:event_btnCatalogoActionPerformed
 
+    private void btnTop10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTop10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTop10ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCatalogo;
-    private javax.swing.JButton btnHistorial;
-    private javax.swing.JButton btnStats;
-    private javax.swing.JButton btnTop0;
-    private javax.swing.JButton btnTop10;
-    private javax.swing.JButton btnValorExpress;
-    private javax.swing.JButton btnValorPaquete;
+    public javax.swing.JButton btnCatalogo;
+    public javax.swing.JButton btnHistorial;
+    public javax.swing.JButton btnStats;
+    public javax.swing.JButton btnTop0;
+    public javax.swing.JButton btnTop10;
+    public javax.swing.JButton btnValorExpress;
+    public javax.swing.JButton btnValorPaquete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txfNuevoValor;
     // End of variables declaration//GEN-END:variables
