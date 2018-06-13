@@ -26,7 +26,7 @@ public class SocketServidor {
         ServerSocket serverSocket = new ServerSocket(PORT); //conecta al puerto
         System.out.println("Listo para conexiones...");
         
-        Platillo[] plato;
+        Platillo[] platos;
         String funcion;
         
         while (state){ 
@@ -38,20 +38,20 @@ public class SocketServidor {
                 funcion = (String) objectInputStream.readObject();
             if (funcion!= null){
                 if(funcion.equals("borrar")){
-                    plato = (Platillo[]) objectInputStream.readObject();//esto es solo para que lea algo, aunque realmente no hace nada
+                    platos = (Platillo[]) objectInputStream.readObject();//esto es solo para que lea algo, aunque realmente no hace nada
                     System.out.println("Se borro con exito");
                 }
                 if (funcion.equals("generarOrden")){
-                    plato = (Platillo[]) objectInputStream.readObject();
-                    Platillo[] pollo = plato; //Dado el flujo recibido, recibe un  objeto, en este caso es el Platillo que yo se que lo envia
+                    platos = (Platillo[]) objectInputStream.readObject();
+                    Platillo[] listaPlatos = platos; //Dado el flujo recibido, recibe un  objeto, en este caso es el Platillo que yo se que lo envia
+                    
+                    probar(listaPlatos); //pruebo si sirve                            //sino habria que captar entradas de forma mas general para castearlo.
                 
-                    probar(pollo); //pruebo si sirve                            //sino habria que captar entradas de forma mas general para castearlo.
-                
-                    objectOutputStream.writeObject(pollo);
+                    objectOutputStream.writeObject(listaPlatos);
                     System.out.println("se genero la orden con exito");
                 }
                 if(funcion.equals("cerrar")){
-                    plato = (Platillo[]) objectInputStream.readObject();//esto es solo para que lea algo, aunque realmente no hace nada
+                    platos = (Platillo[]) objectInputStream.readObject();//esto es solo para que lea algo, aunque realmente no hace nada
                     SocketServidor.state = false;
                     System.out.println("se cerro el servidor");
                 }
