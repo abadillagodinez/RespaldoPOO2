@@ -16,7 +16,7 @@ public class SocketServidor {
 
 	 
     public static boolean state = true;
-    public static final int PORT = 8080;        //Puerto de conexion
+    public static final int PORT = 4444;        //Puerto de conexion
     public static Socket socket;
     public static void main(String args[]) throws IOException , ClassNotFoundException{
         new SocketServidor().runServer();   //ejecuta el server

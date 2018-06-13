@@ -6,6 +6,7 @@
 package Vista.Cliente;
 
 import javax.swing.JOptionPane;
+import Clases.Platillo;
 
 /**
  *

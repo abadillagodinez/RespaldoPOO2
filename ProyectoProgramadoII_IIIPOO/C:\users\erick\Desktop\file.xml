@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Catalogo>
+<Platillo id="BEB-0">
+<nombre>pizzaaa</nombre>
+<descripcion>muy rica</descripcion>
+<precio>1000.0</precio>
+<tipoPorcion>plato</tipoPorcion>
+<Habilitado>true</Habilitado>
+<CantPedidos>10</CantPedidos>
+<codClave>BEB-001</codClave>
+<CantPlatos>6</CantPlatos>
+</Platillo>
+<Platillo id="BEB-1">
+<nombre>macarrones</nombre>
+<descripcion>muy rico</descripcion>
+<precio>10020.0</precio>
+<tipoPorcion>plato</tipoPorcion>
+<Habilitado>false</Habilitado>
+<CantPedidos>12</CantPedidos>
+<codClave>BEB-001</codClave>
+<CantPlatos>6</CantPlatos>
+</Platillo>
+</Catalogo>
