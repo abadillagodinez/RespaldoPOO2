@@ -121,7 +121,6 @@ public class Platillo implements Serializable{      //Cada clase que quiere pasa
     }
     public String getSocket(){
         return resulSocket;
-        
     }
     
     
