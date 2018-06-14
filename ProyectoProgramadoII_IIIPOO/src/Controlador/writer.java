@@ -86,6 +86,14 @@ public class writer {
 		calorias.appendChild(doc.createTextNode(Integer.toString(platillos[cont].getCalorias())));
 		platillo.appendChild(calorias);
                 
+                Element kilokcalPorGramo = doc.createElement("kilokcalPorGramo");
+		kilokcalPorGramo.appendChild(doc.createTextNode(Integer.toString(platillos[cont].getCalorias())));
+		platillo.appendChild(kilokcalPorGramo);
+                
+                Element gramosPorPorcion = doc.createElement("gramosPorPorcion");
+		gramosPorPorcion.appendChild(doc.createTextNode(Integer.toString(platillos[cont].getCalorias())));
+		platillo.appendChild(gramosPorPorcion);
+                
                 
                 
                 
@@ -125,6 +133,8 @@ public class writer {
         platillito.setTipoPorcion("plato");
         platillito.setCantidadPlatos(3);
         platillito.setCalorias(100);
+        platillito.setKilokcalPorGramo(100);
+        platillito.setGramosPorPorcion(200);
         Platillo[] lista = new Platillo[2];
         lista[0]= platillito;
         Platillo platillito2 = new Platillo();
@@ -137,6 +147,8 @@ public class writer {
         platillito2.setTipoPorcion("plato");
         platillito2.setCantidadPlatos(6);
         platillito2.setCalorias(200);
+        platillito2.setKilokcalPorGramo(150);
+        platillito2.setGramosPorPorcion(250);
         lista[1] = platillito2;
         //System.out.println(lista[0].getNombre());
         xml.Writer(lista);

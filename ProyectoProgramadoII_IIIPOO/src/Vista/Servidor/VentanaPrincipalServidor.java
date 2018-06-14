@@ -168,8 +168,8 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
 
     private void btnCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoActionPerformed
         // TODO add your handling code here:
-        VentanaCatalogo nueva = new VentanaCatalogo();
-        nueva.setVisible(true);
+        //VentanaCatalogo nueva = new VentanaCatalogo();
+        //nueva.setVisible(true);
     }//GEN-LAST:event_btnCatalogoActionPerformed
 
     private void btnTop10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTop10ActionPerformed

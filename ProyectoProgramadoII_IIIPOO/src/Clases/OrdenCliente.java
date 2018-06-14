@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package Clases;
-
+import java.io.Serializable;
 /**
  *
  * @author dereck
  */
-public class OrdenCliente {
+public class OrdenCliente implements Serializable  {
     
     private Platillo platillo;
     private int cantidad;

@@ -47,7 +47,7 @@ public class FuncionalidadesServer {
          
         
         }
-       
+        System.out.println("pedido procesado");
         
         
     }

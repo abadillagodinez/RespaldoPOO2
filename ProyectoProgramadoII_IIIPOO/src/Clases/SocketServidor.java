@@ -9,8 +9,11 @@ import java.net.*;
 import java.io.*;
 import Controlador.ControladorServidor;
 import Controlador.reader;
+<<<<<<< HEAD
 import java.util.logging.Level;
 import java.util.logging.Logger;
+=======
+>>>>>>> master
 
 
 	 

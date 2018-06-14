@@ -18,7 +18,7 @@ import Clases.Platillo;
 public class reader {
     
    
-   private Platillo[] XMLReader(){
+   public Platillo[] XMLReader(){
        Platillo[] listaPlatillos = new Platillo[2];//ACA ESTA LA LISTA 
        try {
          
@@ -28,46 +28,52 @@ public class reader {
          DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
          Document doc = dBuilder.parse(inputFile);
          doc.getDocumentElement().normalize();
-         System.out.println("Root element :" + doc.getDocumentElement().getNodeName());// se toma el nombre del root que va a ser Catalogo
+         //System.out.println("Root element :" + doc.getDocumentElement().getNodeName());// se toma el nombre del root que va a ser Catalogo
          NodeList nList = doc.getElementsByTagName("Platillo");//se hace una lista de todos platillos
-         System.out.println("----------------------------");
+         //.out.println("----------------------------");
          
          int cont = nList.getLength()-1;
          for (int temp = 0; temp < nList.getLength(); temp++) {//se recorre cada platillo
             Node nNode = nList.item(temp);
-            System.out.println("\nCurrent Element :" + nNode.getNodeName());
+            //System.out.println("\nCurrent Element :" + nNode.getNodeName());
             
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                Element eElement = (Element) nNode;
-               System.out.println("Id del platillo : " 
-                  + eElement.getAttribute("id")); 
-               System.out.println("nombre : " 
-                  + eElement.getElementsByTagName("nombre").item(0).getTextContent());
+               //System.out.println("Id del platillo : " 
+               //   + eElement.getAttribute("id")); 
+               //System.out.println("nombre : " 
+               //   + eElement.getElementsByTagName("nombre").item(0).getTextContent());
                platillo.setNombre(eElement.getElementsByTagName("nombre").item(0).getTextContent());
-               System.out.println("descripcion : " 
-                  + eElement.getElementsByTagName("descripcion").item(0).getTextContent());
+               //System.out.println("descripcion : " 
+               //   + eElement.getElementsByTagName("descripcion").item(0).getTextContent());
                platillo.setDescripcion(eElement.getElementsByTagName("descripcion").item(0).getTextContent());
-               System.out.println("precio : " 
-                  + eElement.getElementsByTagName("precio").item(0).getTextContent());
+               //System.out.println("precio : " 
+               //   + eElement.getElementsByTagName("precio").item(0).getTextContent());
                platillo.setPrecio(Double.parseDouble(eElement.getElementsByTagName("precio").item(0).getTextContent()));
-               System.out.println("tipoPorcion : " 
-                  + eElement.getElementsByTagName("tipoPorcion").item(0).getTextContent());
-               System.out.println("habilitado : " 
-                  + eElement.getElementsByTagName("Habilitado").item(0).getTextContent());
+               //System.out.println("tipoPorcion : " 
+               //   + eElement.getElementsByTagName("tipoPorcion").item(0).getTextContent());
+               platillo.setTipoPorcion(eElement.getElementsByTagName("tipoPorcion").item(0).getTextContent());
+               //System.out.println("habilitado : " 
+               //   + eElement.getElementsByTagName("Habilitado").item(0).getTextContent());
                platillo.setHabilitado(Boolean.parseBoolean(eElement.getElementsByTagName("Habilitado").item(0).getTextContent()));
-               System.out.println("cantPedidos : " 
-                  + eElement.getElementsByTagName("CantPedidos").item(0).getTextContent());
+               //System.out.println("cantPedidos : " 
+               //   + eElement.getElementsByTagName("CantPedidos").item(0).getTextContent());
                platillo.setCantPedidos(Integer.parseInt(eElement.getElementsByTagName("CantPedidos").item(0).getTextContent()));
-               System.out.println("codClave : " 
-                  + eElement.getElementsByTagName("codClave").item(0).getTextContent());
+               //System.out.println("codClave : " 
+               //   + eElement.getElementsByTagName("codClave").item(0).getTextContent());
                platillo.setCodClave(eElement.getElementsByTagName("codClave").item(0).getTextContent());
-               System.out.println("cantidadPlatos : " 
-                  + eElement.getElementsByTagName("CantPlatos").item(0).getTextContent());
+               //System.out.println("cantidadPlatos : " 
+               //   + eElement.getElementsByTagName("CantPlatos").item(0).getTextContent());
                platillo.setCantidadPlatos(Integer.parseInt(eElement.getElementsByTagName("CantPlatos").item(0).getTextContent()));
-               System.out.println("calorias : " 
-                  + eElement.getElementsByTagName("calorias").item(0).getTextContent());
+               //System.out.println("calorias : " 
+               //   + eElement.getElementsByTagName("calorias").item(0).getTextContent());
                platillo.setCantidadPlatos(Integer.parseInt(eElement.getElementsByTagName("calorias").item(0).getTextContent()));
                
+               
+               platillo.setKilokcalPorGramo(Double.parseDouble(eElement.getElementsByTagName("kilokcalPorGramo").item(0).getTextContent()));
+               
+               
+               platillo.setKilokcalPorGramo(Double.parseDouble(eElement.getElementsByTagName("gramosPorPorcion").item(0).getTextContent()));
                listaPlatillos[temp] = platillo;
                
                

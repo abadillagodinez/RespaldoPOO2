@@ -5,17 +5,28 @@
  */
 package Vista.Servidor;
 
+import Clases.Platillo;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  *
  * @author retr0
  */
 public class VentanaTop10 extends javax.swing.JFrame {
-
     /**
      * Creates new form VentanaCatalogo
+     * @param platillos
      */
-    public VentanaTop10() {
+    public VentanaTop10(ArrayList<Platillo> platillos) {
         initComponents();
+        if(platillos.isEmpty()){
+            lstComidas.add("No existen platillos en el top");
+        }else{
+          for (Platillo platillosSelec1 : platillos) {
+            lstComidas.add(platillosSelec1.toString());
+        }  
+        }
     }
 
     /**

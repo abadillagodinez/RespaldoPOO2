@@ -5,17 +5,28 @@
  */
 package Vista.Servidor;
 
+import Clases.Platillo;
+import Clases.imgHandler;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author retr0
  */
 public class VentanaModificar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaModificar
-     */
-    public VentanaModificar() {
-        initComponents();
+    public Platillo platillo;
+    private File Archivo;
+    private byte[] bytesIMG;
+    private imgHandler gestion=new imgHandler();
+    private javax.swing.JFileChooser selected = new javax.swing.JFileChooser();
+    
+
+    public Platillo getPlatillo() {
+        return platillo;
     }
 
     /**
@@ -27,38 +38,39 @@ public class VentanaModificar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txfCodigo = new javax.swing.JTextField();
         txfNombre = new javax.swing.JTextField();
         txfDescripcion = new javax.swing.JTextField();
-        txfTamanoPorcion = new javax.swing.JTextField();
+        txtTipoPorcion = new javax.swing.JTextField();
         txfCaloriasPorcion = new javax.swing.JTextField();
-        txfCaloriasPieza = new javax.swing.JTextField();
         txfPrecio = new javax.swing.JTextField();
         btnAplicar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        togleHabilitado = new javax.swing.JToggleButton();
+        btnVerImagen = new javax.swing.JButton();
+        btnCambiarImg = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel1.setText("Codigo:");
 
         jLabel2.setText("Nombre:");
 
         jLabel3.setText("Descripción:");
 
-        jLabel4.setText("Tamaño de porción:");
+        jLabel4.setText("Tipo de porción:");
 
         jLabel5.setText("Calorías por porción:");
 
-        jLabel6.setText("Calorías por pieza:");
-
         jLabel7.setText("Precio:");
+
+        txfNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfNombreActionPerformed(evt);
+            }
+        });
 
         btnAplicar.setText("Aplicar");
         btnAplicar.addActionListener(new java.awt.event.ActionListener() {
@@ -74,41 +86,68 @@ public class VentanaModificar extends javax.swing.JFrame {
             }
         });
 
+        togleHabilitado.setText("Habilitado");
+        togleHabilitado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                togleHabilitadoActionPerformed(evt);
+            }
+        });
+
+        btnVerImagen.setText("Ver Imagen");
+        btnVerImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerImagenActionPerformed(evt);
+            }
+        });
+
+        btnCambiarImg.setText("CambiarImagen");
+        btnCambiarImg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarImgActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnAplicar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txfCodigo)
-                    .addComponent(txfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(txfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(txfTamanoPorcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(txfCaloriasPorcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(txfCaloriasPieza, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(txfPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnAplicar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                        .addComponent(txfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                        .addComponent(txtTipoPorcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                        .addComponent(txfCaloriasPorcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                                    .addComponent(txfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(togleHabilitado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVerImagen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCambiarImg)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -119,62 +158,106 @@ public class VentanaModificar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txfTamanoPorcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTipoPorcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txfCaloriasPorcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txfCaloriasPieza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(togleHabilitado)
+                    .addComponent(btnVerImagen)
+                    .addComponent(btnCambiarImg))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAplicar)
                     .addComponent(btnCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
-        // TODO add your handling code here:
-        txfCaloriasPieza.setText("");
-        txfCaloriasPorcion.setText("");
-        txfCodigo.setText("");
-        txfDescripcion.setText("");
-        txfNombre.setText("");
-        txfPrecio.setText("");
-        txfTamanoPorcion.setText("");
+        platillo.setCalorias(Integer.parseInt(txfCaloriasPorcion.getText()));
+        platillo.setDescripcion(txfDescripcion.getText());
+        platillo.setNombre(txfNombre.getText());
+        platillo.setPrecio(Double.parseDouble(txfPrecio.getText()));
+        platillo.setTipoPorcion(txtTipoPorcion.getText());
+        platillo.setHabilitado(togleHabilitado.isSelected());
+        JOptionPane.showMessageDialog(this, "Cambios guardados exitosamente");
+        this.setVisible(false);
     }//GEN-LAST:event_btnAplicarActionPerformed
+
+    
+    private void togleHabilitadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_togleHabilitadoActionPerformed
+        
+    }//GEN-LAST:event_togleHabilitadoActionPerformed
+
+    private void btnVerImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerImagenActionPerformed
+        javax.swing.JLabel img= new javax.swing.JLabel();
+        img.setText("");
+        img.setIcon(new ImageIcon(platillo.getImagen()));
+        img.setVisible(true);
+    }//GEN-LAST:event_btnVerImagenActionPerformed
+
+    private void btnCambiarImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarImgActionPerformed
+        if(selected.showDialog(this, "Abrir Archivo")== JFileChooser.APPROVE_OPTION){
+            Archivo= selected.getSelectedFile();
+            if(Archivo.canRead()){
+                if(Archivo.getName().endsWith(".jpg")||Archivo.getName().endsWith(".gif")||Archivo.getName().endsWith(".png")){
+                    bytesIMG = gestion.AbrirIMG(Archivo);
+                    platillo.setImagen(bytesIMG);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Selecione un archivo valido");
+                }
+            }
+        }
+    }//GEN-LAST:event_btnCambiarImgActionPerformed
+
+    private void txfNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfNombreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicar;
+    private javax.swing.JButton btnCambiarImg;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnVerImagen;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField txfCaloriasPieza;
+    private javax.swing.JToggleButton togleHabilitado;
     private javax.swing.JTextField txfCaloriasPorcion;
-    private javax.swing.JTextField txfCodigo;
     private javax.swing.JTextField txfDescripcion;
     private javax.swing.JTextField txfNombre;
     private javax.swing.JTextField txfPrecio;
-    private javax.swing.JTextField txfTamanoPorcion;
+    private javax.swing.JTextField txtTipoPorcion;
     // End of variables declaration//GEN-END:variables
+
+
+    public VentanaModificar(Platillo platillo) {//se le pasa los datos del platillo que va a modificar
+        this.platillo=platillo;
+        initComponents();
+        togleHabilitado.setSelected(platillo.getHabilitado());
+        txfCaloriasPorcion.setText(String.valueOf(platillo.getCalorias()));
+        txfDescripcion.setText(platillo.getDescripcion());
+        txfNombre.setText(platillo.getNombre());
+        txfPrecio.setText(String.valueOf(platillo.getPrecio()));
+        txtTipoPorcion.setText(platillo.getTipoPorcion());
+    }
+
+
 }
