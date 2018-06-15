@@ -5,7 +5,15 @@
  */
 package Vista.Servidor;
 
+import Clases.Pedido;
+import Clases.Platillo;
+import Clases.SocketServidor;
 import Controlador.ControladorServidor;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 //import sun.text.normalizer.CharTrie;
 
 /**
@@ -14,10 +22,13 @@ import Controlador.ControladorServidor;
  */
 public class VentanaPrincipalServidor extends javax.swing.JFrame {
     ControladorServidor controlador;
+    VentanaCatalogo miCatalogo;
+    SocketServidor ss=SocketServidor.getInstance();
     /**
      * Creates new form VentanaPrincipalServidor
      */
-    public VentanaPrincipalServidor() {
+    public VentanaPrincipalServidor(VentanaCatalogo mc) {
+        miCatalogo=mc;
         initComponents();
     }
     
@@ -54,11 +65,11 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaPrincipalServidor().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new VentanaPrincipalServidor().setVisible(true);
+//            }
+//        });
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,6 +110,11 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
         });
 
         btnHistorial.setText("Historial");
+        btnHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialActionPerformed(evt);
+            }
+        });
 
         btnCatalogo.setText("Catálogo");
         btnCatalogo.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +133,11 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
         });
 
         btnValorExpress.setText("Valor express");
+        btnValorExpress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValorExpressActionPerformed(evt);
+            }
+        });
 
         btnStats.setText("Estadísticas");
         btnStats.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +146,7 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
             }
         });
 
-        btnEnviarCatalogo.setText("Enviar cálogo");
+        btnEnviarCatalogo.setText("Enviar catálogo");
         btnEnviarCatalogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnviarCatalogoActionPerformed(evt);
@@ -192,24 +213,68 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCatalogoActionPerformed
 
     private void btnTop10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTop10ActionPerformed
-        // TODO add your handling code here:
+        ArrayList<Platillo> top10=new ArrayList<>();
+                if(miCatalogo.platillos.size() > 0){
+                    for(Platillo platillo:miCatalogo.platillos){
+                        if(top10.size()<10){
+                            top10.add(platillo);
+                        }else{
+                            for(Platillo platillo2:top10){
+                                if(platillo.getCantPedidos()>platillo2.getCantPedidos()){
+                                    top10.remove(platillo2);
+                                    top10.add(platillo);
+                                    break;
+                                }
+                            }
+                            VentanaTop10 nuevaTop10= new VentanaTop10(top10);
+                            nuevaTop10.setVisible(true);
+                        }
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(this ,"La lista de platillos se encuentra vacia",  "Error" , 1);
+                }
     }//GEN-LAST:event_btnTop10ActionPerformed
 
     private void btnValorPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValorPaqueteActionPerformed
-        // TODO add your handling code here:
+        Pedido.valorEmpaque=Double.valueOf(txfNuevoValor.getText());
+        txfNuevoValor.setText("");
     }//GEN-LAST:event_btnValorPaqueteActionPerformed
 
     private void btnStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnStatsActionPerformed
 
     private void btnTop0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTop0ActionPerformed
-        // TODO add your handling code here:
+        ArrayList<Platillo> top10=new ArrayList<>();
+        if(miCatalogo.platillos.size() > 0){
+            for(Platillo platillo:miCatalogo.platillos){
+                if(platillo.getCantPedidos()==0){
+                    top10.add(platillo);
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this ,"La lista de platillos se encuentra vacia",  "Error" , 1);
+        }
     }//GEN-LAST:event_btnTop0ActionPerformed
 
     private void btnEnviarCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarCatalogoActionPerformed
-        // TODO add your handling code here:
+       try {
+            ss.enviarCatalogo();
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipalServidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEnviarCatalogoActionPerformed
+
+    private void btnValorExpressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValorExpressActionPerformed
+        Pedido.valorExpress=Double.valueOf(txfNuevoValor.getText());
+        txfNuevoValor.setText("");
+    }//GEN-LAST:event_btnValorExpressActionPerformed
+
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHistorialActionPerformed
 
     
 

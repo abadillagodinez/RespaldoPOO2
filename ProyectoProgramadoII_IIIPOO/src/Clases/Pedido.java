@@ -20,8 +20,8 @@ public class Pedido implements Serializable  {
     private String nombreCliente;
     private String sitio;
     private String direccion;
-    private double valorExpress;
-    private double valorEmpaque;
+    public static double valorExpress;
+    public static double valorEmpaque;
     private String tipoPedido;  //lo puse string no enum por mientras
     private OrdenCliente[] platillos;
     public String resulSocket;
@@ -39,8 +39,8 @@ public class Pedido implements Serializable  {
         this.nombreCliente= nombreCliente;
         this.sitio = sitio;
         this.direccion = direccion;
-        this.valorExpress = valorExpress;
-        this.valorEmpaque = valorEmpaque;
+        //this.valorExpress = valorExpress;
+        //this.valorEmpaque = valorEmpaque;
         this.tipoPedido = tipo;
         this.platillos = platillos;
         
@@ -98,17 +98,12 @@ public class Pedido implements Serializable  {
         return valorExpress;
     }
 
-    public void setValorExpress(double valorExpress) {
-        this.valorExpress = valorExpress;
-    }
 
     public double getValorEmpaque() {
         return valorEmpaque;
     }
 
-    public void setValorEmpaque(double valorEmpaque) {
-        this.valorEmpaque = valorEmpaque;
-    }
+
     /*
     public TipoPedido getTipoPedido() {
         return tipoPedido;
@@ -120,4 +115,17 @@ public class Pedido implements Serializable  {
     
     */
 
+    public static void setValorExpress(double valorExpress) {
+        Historial h=Historial.getInstance();
+        h.cambios.add("Valor de costo express cambiado a:"+String.valueOf(valorExpress));
+        Pedido.valorExpress = valorExpress;
+    }
+
+    public static void setValorEmpaque(double valorEmpaque) {
+        Historial h=Historial.getInstance();
+        h.cambios.add("Valor de costo empaque cambiado a:"+String.valueOf(valorEmpaque));
+        Pedido.valorEmpaque = valorEmpaque;
+    }
+
+    
 }

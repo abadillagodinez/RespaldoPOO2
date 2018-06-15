@@ -1,7 +1,6 @@
 
 package Clases;
 
-import static Clases.FuncionalidadesServer.listaPlatillos;
 
 import java.net.*;
 
@@ -17,31 +16,45 @@ public class SocketCliente extends Thread{
     public static Socket socket;
     final String HOST = "localhost";
     public Platillo[] catalogo; 
-
+    /**
+     * 
+     * @return una instancia del SocketCliente
+     */
     public static SocketCliente getInstance(){
         if(sc == null){
             sc = new SocketCliente();
         }
         return sc;
     }
-    
+    /**
+     * conecta el cliente con el servidor
+     */
     private SocketCliente(){
         ConectarCliente();
     }
-    
+    /**
+     * Corre el cliente
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public void runClient() throws IOException, ClassNotFoundException{
         
         while(state){
             catalogo = recibirCatalogo();
         }
     }
-    
+    /**
+     * imprime el catalogo actual
+     */
     public void printCat(){
         for(int i = 0; i < catalogo.length; i++){
             Platillo actual = catalogo[i];
             System.out.println(actual.nombre);
         }
     }
+    /**
+     * Conecta el cliente al servidor 
+     */
     public void ConectarCliente(){
         try {
             socket = new Socket(HOST,SocketServidor.PORT);//conecta al mismo puerto del servidor
@@ -50,7 +63,13 @@ public class SocketCliente extends Thread{
         }
 
     }
-    
+    /**
+     * Recibe el catalogo que el servidor le envia
+     * @return el catalogo con todos los platillos
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws UnknownHostException 
+     */
     public Platillo[] recibirCatalogo()throws IOException , ClassNotFoundException,UnknownHostException{
         ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());   // capta flujo de datos
         Platillo[] catalogo = (Platillo[]) objectInputStream.readObject();
@@ -58,6 +77,13 @@ public class SocketCliente extends Thread{
         return catalogo;
         
     }
+    /**
+     * Envia el nuevo pedido
+     * @param nuevoPedido
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws UnknownHostException 
+     */
     public void generarOrden(Pedido nuevoPedido)throws IOException , ClassNotFoundException,UnknownHostException{
         
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());   //devuelve flujo de datos
@@ -72,6 +98,9 @@ public class SocketCliente extends Thread{
     }
 
     @Override
+    /**
+     * ejecuta el cliente
+     */
     public void run(){
         try {
             runClient();
@@ -81,7 +110,26 @@ public class SocketCliente extends Thread{
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+//    public static void main(String args[])throws IOException , ClassNotFoundException,UnknownHostException {
+//        SocketCliente nuevaConexion = new SocketCliente();
+//        Platillo[] catalogo = nuevaConexion.recibirCatalogo();
+//        System.out.println("ya asigno a catalogo lo que mando el server");
+//        Platillo[] listaPlatillos = new Platillo[111];
+        //Platillo p1 = new Platillo("pollo",1000,200);
+        //Platillo p2 = new Platillo("Bistec",1500,400);
+        //Platillo p3 = new Platillo("ensalada",1800,75);
+        //Platillo p4 = new Platillo("Crema de Hongos",2300,300);
+        //Platillo p5 = new Platillo("Casado Completo",3000,1000);
+        //listaPlatillos[0]= p1;
+        //listaPlatillos[1]= p2;
+        //listaPlatillos[2]= p3;
+        //listaPlatillos[3]= p4;
+        //listaPlatillos[4]= p5;
+        
+        
+        //Orden de cliente*****************
+      
     public static void main(String args[])throws IOException , ClassNotFoundException,UnknownHostException {
         SocketCliente nuevaConexion = new SocketCliente();
         Platillo[] catalogo = nuevaConexion.recibirCatalogo();
@@ -124,6 +172,8 @@ public class SocketCliente extends Thread{
 //        System.out.println("ya paso de generarOrden");
         
         
+
+//    }
     }
 
     

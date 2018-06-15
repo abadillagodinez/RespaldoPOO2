@@ -27,6 +27,7 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
     private javax.swing.JFileChooser selected = new javax.swing.JFileChooser();
     private ArrayList<String> platillos;
     public boolean platoValido=false;
+    public VentanaCatalogo padre;
     
 
     public Platillo getPlatillo() {
@@ -241,6 +242,9 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
                 setVoid();
                 platoValido=true;
                 JOptionPane.showMessageDialog(this, "Plato Creado Correctamente");
+                padre.platillos.add(platillo);
+                padre.setVisible();
+                this.dispose();
             }else{
                 JOptionPane.showMessageDialog(this, "Seleccione una categoria de plato");
             }
@@ -323,9 +327,10 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 
-    public CreadorNoBebidas(ArrayList<String> platillos) {//se le pasa los datos del platillo que va a modificar
+    public CreadorNoBebidas(ArrayList<String> platillos,VentanaCatalogo dad) {//se le pasa los datos del platillo que va a modificar
         initComponents();
         this.platillos=platillos;
+        padre=dad;
     }
 
 

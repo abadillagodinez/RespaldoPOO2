@@ -24,6 +24,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     private byte[] bytesIMG;
     private imgHandler gestion=new imgHandler();
     private javax.swing.JFileChooser selected = new javax.swing.JFileChooser();
+    public VentanaCatalogo dad;
     
 
     public Platillo getPlatillo() {
@@ -215,6 +216,7 @@ public class VentanaModificar extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.setVisible(false);
+        dad.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -229,6 +231,9 @@ public class VentanaModificar extends javax.swing.JFrame {
         platillo.setKilokcalPorGramo(Double.valueOf(txtKcalPorc.getText()));
         JOptionPane.showMessageDialog(this, "Cambios guardados exitosamente");
         this.setVisible(false);
+        dad.setVisible();
+        dispose();
+        
     }//GEN-LAST:event_btnAplicarActionPerformed
 
     
@@ -239,6 +244,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     private void btnVerImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerImagenActionPerformed
         javax.swing.JLabel img= new javax.swing.JLabel();
         img.setText("");
+        img.setLocation(0, 0);
         img.setIcon(new ImageIcon(platillo.getImagen()));
         img.setVisible(true);
     }//GEN-LAST:event_btnVerImagenActionPerformed
@@ -293,7 +299,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 
-    public VentanaModificar(Platillo platillo) {//se le pasa los datos del platillo que va a modificar
+    public VentanaModificar(Platillo platillo, VentanaCatalogo cat) {//se le pasa los datos del platillo que va a modificar
         this.platillo=platillo;
         initComponents();
         togleHabilitado.setSelected(platillo.getHabilitado());
@@ -311,6 +317,7 @@ public class VentanaModificar extends javax.swing.JFrame {
             lblCalUnid.setText("Calorias por gramos");
             lblCantPorcion.setText("Gramos por porcion");
         }
+        dad=cat;
     }
 
 

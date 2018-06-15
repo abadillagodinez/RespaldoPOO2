@@ -173,10 +173,14 @@ public class FuncionalidadesServer {
 
     
     
+//    public static void main(String args[]){
+//        
+
     public static void main(String args[]){
  
         
         
+
 //        FuncionalidadesServer func = new FuncionalidadesServer();   //Simulacion del reader del XML parser
 //        Platillo p1 = new Platillo("pollo",1000,200,0,"Pollo rico","PRN");
 //        Platillo p2 = new Platillo("Bistec",1500,400,0,"Bistec grande","PRN");
@@ -223,6 +227,7 @@ public class FuncionalidadesServer {
 //        
 //        
 //        
+//    }
     }
     
     

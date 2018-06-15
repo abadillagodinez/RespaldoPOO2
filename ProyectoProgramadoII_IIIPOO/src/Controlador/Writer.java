@@ -24,7 +24,10 @@ import Clases.Platillo;
 import Clases.TipoPlatillo;
 import Clases.imgHandler;
 public class Writer {
-    
+    /**
+     * Escribe en un archivo XML el catalogo
+     * @param platillos 
+     */
     public void Writer(Platillo[] platillos){
         try {
 
@@ -142,7 +145,7 @@ public class Writer {
 		Transformer transformer = transformerFactory.newTransformer();
                 transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 		DOMSource source = new DOMSource(doc);
-		StreamResult result = new StreamResult(new File("C:\\users\\erick\\Desktop\\file.xml"));// aqui tienen que cambiar la direccion a la que ustedes quieran
+		StreamResult result = new StreamResult(new File("file.xml"));// aqui tienen que cambiar la direccion a la que ustedes quieran
 
 		// Output to console for testing
 		// StreamResult result = new StreamResult(System.out);
