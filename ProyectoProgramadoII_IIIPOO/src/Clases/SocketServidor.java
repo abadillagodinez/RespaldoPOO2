@@ -24,8 +24,12 @@ public class SocketServidor extends Thread{
     public static boolean state = true;
     public static final int PORT = 4444;        //Puerto de conexion
     public static Socket socket;
-    
+    ServerSocket serverSocket;
+    ObjectOutputStream objectOutputStream1;
+    ObjectInputStream objectInputStream;
     private SocketServidor(){}
+    
+    
     
     public static SocketServidor getInstance(){
         if(sk == null){
@@ -33,62 +37,39 @@ public class SocketServidor extends Thread{
         }
         return sk;
     }
-
-    public void runServer() throws IOException,ClassNotFoundException{
-        
-        ServerSocket serverSocket = new ServerSocket(PORT); //conecta al puerto
-        System.out.println("Listo para conexiones...");
-        socket = serverSocket.accept();//acepta conexion
-        ObjectOutputStream objectOutputStream1 = new ObjectOutputStream(socket.getOutputStream());
+    
+    public void enviarCatalogo() throws IOException{
         Reader xml = new Reader();
         Platillo[] lplatillo;
         lplatillo = xml.XMLReader();//lee el archivo XML
         objectOutputStream1.writeObject(lplatillo);//aqui manda el catalogo por el socket
-        System.out.println("el catalogo fue enviado al cliente");
-        Pedido pedido;
-        String funcion;
-        FuncionalidadesServer fun = new FuncionalidadesServer();
-        
+    }
+    
+    public Pedido recibirPedido() throws IOException, ClassNotFoundException{
+        Pedido pedido = (Pedido) objectInputStream.readObject();
+        return pedido;
+    }
+
+    public void esperarAlCliente() throws IOException{
+        serverSocket = new ServerSocket(PORT); //abre el puerto para conexiones
+        System.out.println("Listo para conexiones...");
+    }
+    
+    
+    public void runServer() throws IOException,ClassNotFoundException{
         while (state){ 
             socket = serverSocket.accept();//acepta conexion
             System.out.println(socket);
-            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());   // capta flujo de datos
-            //ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());   //devuelve flujo de datos
-            try{
-                funcion = (String) objectInputStream.readObject();
-            if (funcion!= null){
-                if (funcion.equals("generarOrden")){
-                    
-                    pedido = (Pedido) objectInputStream.readObject();
-                    //probar(pedido); //pruebo si sirve                            //sino habria que captar entradas de forma mas general para castearlo.
-                    
-                    
-                    //objectOutputStream.writeObject(pedido);
-                    System.out.println("se genero la orden con exito");
-                    
-                }
-                if(funcion.equals("cerrar")){
-                    pedido = (Pedido) objectInputStream.readObject();//esto es solo para que lea algo, aunque realmente no hace nada
-                    SocketServidor.state = false;
-                    System.out.println("se cerro el servidor");
-                }
-                
-                
-                socket.close();
-            }          
-            }
-            catch(Exception e){
-    
-            }
+            Pedido nuevo = recibirPedido();
         }
              
 
     }
     
-    private void probar(Pedido p){
-        p.setSocket(p.getNombreCliente());      //devuelve nombre de platillo dado por cliente
-        
-    }
+//    private void probar(Pedido p){
+//        p.setSocket(p.getNombreCliente());      //devuelve nombre de platillo dado por cliente
+//        
+//    }
     
     public void setControlador(ControladorServidor controlador){
         this.controlador = controlador;
