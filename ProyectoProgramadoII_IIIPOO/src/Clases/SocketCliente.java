@@ -33,7 +33,6 @@ public class SocketCliente extends Thread{
         
         while(state){
             catalogo = recibirCatalogo();
-            System.out.println("recibio el cat");
         }
     }
     
@@ -55,7 +54,7 @@ public class SocketCliente extends Thread{
     public Platillo[] recibirCatalogo()throws IOException , ClassNotFoundException,UnknownHostException{
         ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());   // capta flujo de datos
         Platillo[] catalogo = (Platillo[]) objectInputStream.readObject();
-        //System.out.println("se recibio el catalogo");
+        System.out.println("se recibio el catalogo");
         return catalogo;
         
     }

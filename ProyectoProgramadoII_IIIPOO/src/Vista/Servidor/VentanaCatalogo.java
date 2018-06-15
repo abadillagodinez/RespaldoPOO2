@@ -228,13 +228,13 @@ public class VentanaCatalogo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAnadirActionPerformed
 
     private void radioBtnNoBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnNoBebidaActionPerformed
-       radioBtnBebida.setSelected(false);
-       radioBtnNoBebida.setSelected(true);
+//       radioBtnBebida.setSelected(false);
+//       radioBtnNoBebida.setSelected(true);
     }//GEN-LAST:event_radioBtnNoBebidaActionPerformed
 
     private void radioBtnBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnBebidaActionPerformed
-       radioBtnBebida.setSelected(true);
-       radioBtnNoBebida.setSelected(false);
+//       radioBtnBebida.setSelected(true);
+//       radioBtnNoBebida.setSelected(false);
     }//GEN-LAST:event_radioBtnBebidaActionPerformed
 
     
