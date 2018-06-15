@@ -58,6 +58,7 @@ public class SocketServidor extends Thread{
     
     public void runServer() throws IOException,ClassNotFoundException{
         while (state){ 
+            esperarAlCliente();
             socket = serverSocket.accept();//acepta conexion
             System.out.println(socket);
             Pedido nuevo = recibirPedido();

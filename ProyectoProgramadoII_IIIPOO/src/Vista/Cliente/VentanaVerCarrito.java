@@ -62,6 +62,8 @@ public class VentanaVerCarrito extends javax.swing.JFrame {
             }
         });
 
+        txfCantidad.setEditable(false);
+
         btnAumentar.setText("+");
         btnAumentar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

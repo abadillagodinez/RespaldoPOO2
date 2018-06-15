@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
  * @author retr0
  */
 public class CreadorBebidas extends javax.swing.JFrame {
-
+    
+    private VentanaCatalogo padre;
     public Platillo platillo;
     private File Archivo;
     private byte[] bytesIMG;
@@ -77,7 +78,7 @@ public class CreadorBebidas extends javax.swing.JFrame {
             }
         });
 
-        btnCrear.setText("Crear");
+        btnCrear.setText("Crear bebida");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);
@@ -179,7 +180,8 @@ public class CreadorBebidas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        this.setVisible(false);
+        padre.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
@@ -203,6 +205,7 @@ public class CreadorBebidas extends javax.swing.JFrame {
             platillo.setKilokcalPorGramo(Double.valueOf(txtkcalMl.getText()));
             platillo.setGramosPorPorcion(Double.valueOf(txtMlporcion.getText()));
             platillo.setImagen(bytesIMG);
+            setVoid();
             JOptionPane.showMessageDialog(this, "Plato Creado Correctamente");
             platoValido=true;
         }else{
@@ -228,6 +231,17 @@ public class CreadorBebidas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txfNombreActionPerformed
 
+    
+    
+    public void setVoid(){
+        txfCaloriasPorcion.setText("");
+        txfDescripcion.setText("");
+        txfNombre.setText("");
+        txfPrecio.setText("");
+        txtTipoPorcion.setText("");
+        txtMlporcion.setText("");
+        txtkcalMl.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnadirIMG;
@@ -250,9 +264,10 @@ public class CreadorBebidas extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 
-    public CreadorBebidas(ArrayList<String> platillos) {//se le pasa los datos del platillo que va a modificar
+    public CreadorBebidas(ArrayList<String> platillos, VentanaCatalogo padre) {//se le pasa los datos del platillo que va a modificar
         initComponents();
         this.platillos=platillos;
+        this.padre = padre;
     }
 
 

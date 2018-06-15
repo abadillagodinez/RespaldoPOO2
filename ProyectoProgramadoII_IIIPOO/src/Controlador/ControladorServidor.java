@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Action;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,30 +21,36 @@ import javax.swing.JOptionPane;
  * @author retr0
  */
 public class ControladorServidor implements ActionListener{
+    private final String admin = "admin";
+    private final String contrasegna = "admin";
     private VentanaPrincipalServidor ventana;
+    private VentanaCatalogo ventCatalogo;
+    private VentanaLogin login;
     private SocketServidor servidor;
     private ArrayList<Platillo> platillos = new ArrayList<Platillo>();
     
-    public ControladorServidor(VentanaPrincipalServidor ventana) throws IOException{
-        this.ventana = ventana;
-        this.ventana.btnCatalogo.addActionListener((ActionListener) this);
-        this.ventana.btnHistorial.addActionListener((ActionListener) this);
-        this.ventana.btnStats.addActionListener((ActionListener) this);
-        this.ventana.btnTop0.addActionListener((ActionListener) this);
-        this.ventana.btnTop10.addActionListener((ActionListener) this);
-        this.ventana.btnValorExpress.addActionListener((ActionListener) this);
-        this.ventana.btnValorPaquete.addActionListener((ActionListener) this);
-        this.ventana.setVisible(true);
+    public ControladorServidor() throws IOException{
+        //cuando lo meta en el action listener
+        
+        //
         servidor = SocketServidor.getInstance();
         servidor.start();
-       
+        login = new VentanaLogin();
+        login.btnLogin.addActionListener(this);
+        login.setVisible(true);
     }
     
     public void actionPerformed(ActionEvent e){
         switch(e.getActionCommand()){
+            case "Login":
+                if(login.txfUsername.getText().equals(admin) && login.pwfContrasegna.getText().equals(contrasegna)){
+                    caseLogin();
+                    break;
+                }else{
+                    JOptionPane.showMessageDialog(ventana ,"Usuario y/o contraseña incorrecta",  "Error" , 1);
+                }
             case "Catálogo":
-                VentanaCatalogo venCatalogo = new VentanaCatalogo(platillos);
-                venCatalogo.setVisible(true);
+                caseCatalogo();
                 break;
             case "Top 10":
                 ArrayList<Platillo> top10=new ArrayList<>();
@@ -98,41 +105,52 @@ public class ControladorServidor implements ActionListener{
         }        
     }
     
+    /**
+     * metodo en caso de que el action event sea login
+     */
+    private void caseLogin(){
+        ventana = new VentanaPrincipalServidor();
+        ventana.btnCatalogo.addActionListener((ActionListener) this);
+        ventana.btnHistorial.addActionListener((ActionListener) this);
+        ventana.btnStats.addActionListener((ActionListener) this);
+        ventana.btnTop0.addActionListener((ActionListener) this);
+        ventana.btnTop10.addActionListener((ActionListener) this);
+        ventana.btnValorExpress.addActionListener((ActionListener) this);
+        ventana.btnValorPaquete.addActionListener((ActionListener) this);
+        ventana.setVisible(true);
+        login.dispose();
+    }
+    
+    private void caseCatalogo(){
+        ventCatalogo = new VentanaCatalogo(platillos);
+        ventCatalogo.btnAnadir.addActionListener(this);
+        ventCatalogo.btnEliminar.addActionListener(this);
+        ventCatalogo.btnModificar.addActionListener(this);
+        ventCatalogo.btnVolver.addActionListener(this);
+        ventCatalogo.cbxFiltro.addActionListener(this);
+        ventCatalogo.lstComidas.addActionListener(this);
+        ventCatalogo.radioBtnBebida.addActionListener(this);
+        ventCatalogo.radioBtnNoBebida.addActionListener(this);
+        ventCatalogo.setVisible(true);
+    }
+    
     public VentanaPrincipalServidor getPrincipal(){
         return ventana;
     }
     
-    public static void main(String args[]) {
+     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+       //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ControladorServidor cont;
                 try {
-                    cont = new ControladorServidor(new VentanaPrincipalServidor());
-                    cont.getPrincipal().setVisible(true);
+                    ControladorServidor cl = new ControladorServidor();
                 } catch (IOException ex) {
                     Logger.getLogger(ControladorServidor.class.getName()).log(Level.SEVERE, null, ex);
                 }

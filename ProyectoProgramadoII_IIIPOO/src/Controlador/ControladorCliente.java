@@ -11,9 +11,13 @@ import Vista.Cliente.VentanaExpress;
 import Vista.Cliente.VentanaLLevar;
 import Vista.Cliente.VentanaPrincipalCliente;
 import Vista.Cliente.VentanaVerCarrito;
+import Vista.Servidor.VentanaCatalogo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,11 +26,15 @@ import javax.swing.JOptionPane;
  */
 public class ControladorCliente implements ActionListener{
     private VentanaPrincipalCliente ventana;
+    VentanaVerCarrito verCar;
     private SocketCliente cliente;
-    private ArrayList<Platillo> platillos;
-    private ArrayList<Platillo> carrito; //posive lista para el carrito
+    private ArrayList<Platillo> platillos = new ArrayList<Platillo>();
+    private ArrayList<Platillo> carrito = new ArrayList<Platillo>(); //posive lista para el carrito
     
-    public ControladorCliente(VentanaPrincipalCliente ventana){
+    public ControladorCliente(VentanaPrincipalCliente ventana) throws IOException, ClassNotFoundException{
+        cliente = new SocketCliente();
+        cliente.ConectarCliente();
+        cliente.run();
         this.ventana = ventana;
         this.ventana.btnAñadir.addActionListener((ActionListener)this);
         this.ventana.btnMostrarCalorias.addActionListener((ActionListener)this);
@@ -34,6 +42,7 @@ public class ControladorCliente implements ActionListener{
         this.ventana.cbxFiltro.addActionListener((ActionListener)this);
         this.ventana.verCarrito.addActionListener((ActionListener)this);
         this.ventana.setVisible(true);
+        
     }
     
     @Override
@@ -96,7 +105,13 @@ public class ControladorCliente implements ActionListener{
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 VentanaPrincipalCliente vcl = new VentanaPrincipalCliente();
-                ControladorCliente cl = new ControladorCliente(vcl);
+                try {
+                    ControladorCliente cl = new ControladorCliente(vcl);
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
