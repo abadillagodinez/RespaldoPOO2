@@ -13,6 +13,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import Clases.Platillo;
+import Clases.TipoPlatillo;
 import java.util.Arrays;
 
 public class Reader {
@@ -74,6 +75,25 @@ public class Reader {
                
                
                platillo.setGramosPorPorcion(Double.parseDouble(eElement.getElementsByTagName("gramosPorPorcion").item(0).getTextContent()));
+               
+               if (null != eElement.getElementsByTagName("tipoPlatillo").item(0).getTextContent())
+                   switch (eElement.getElementsByTagName("tipoPlatillo").item(0).getTextContent()) {
+                        case "BEB":
+                            platillo.setTipoPlatillo(TipoPlatillo.BEB);
+                            break;
+                        case "ETR":
+                            platillo.setTipoPlatillo(TipoPlatillo.ETR);
+                            break;
+                        case "PRN":
+                            platillo.setTipoPlatillo(TipoPlatillo.PRN);
+                            break;
+                        case "PTR":
+                            platillo.setTipoPlatillo(TipoPlatillo.PTR);
+                            break;
+                        default:
+                            break;
+                }
+               
                
                String[] byteValues = (eElement.getElementsByTagName("imagen").item(0).getTextContent()).substring(1, eElement.getElementsByTagName("imagen").item(0).getTextContent().length() - 1).split(",");
                byte[] bytes = new byte[byteValues.length];

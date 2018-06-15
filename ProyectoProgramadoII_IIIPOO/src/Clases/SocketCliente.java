@@ -44,7 +44,7 @@ public class SocketCliente extends Thread{
         System.out.println("se envio el objeto");
         //Pedido resultado = (Pedido)objectInputStream.readObject();//el  server me devuelve el objeto para ver si esta sano
         //System.out.println("Recibido de Cliente:"+resultado.getNombreCliente());//me imprime un string modificado en el server
-        socket.close();
+        //socket.close();
     }
 
         
