@@ -25,6 +25,12 @@ public class SocketServidor extends Thread{
     public static final int PORT = 4444;        //Puerto de conexion
     public static Socket socket;
     public  static ServerSocket serverSocket;
+<<<<<<< HEAD
+=======
+    public SocketServidor(){}
+    
+    
+>>>>>>> master
     
     private SocketServidor(){}
     /**

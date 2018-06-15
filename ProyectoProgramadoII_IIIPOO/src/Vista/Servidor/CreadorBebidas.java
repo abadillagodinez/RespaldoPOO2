@@ -28,6 +28,7 @@ public class CreadorBebidas extends javax.swing.JFrame {
     private javax.swing.JFileChooser selected = new javax.swing.JFileChooser();
     private ArrayList<String> platillos;
     public boolean platoValido=false;
+    public ArrayList<Platillo> todos;
     
 
     public Platillo getPlatillo() {
@@ -181,7 +182,10 @@ public class CreadorBebidas extends javax.swing.JFrame {
             setVoid();
             platoValido=true;
             JOptionPane.showMessageDialog(this, "Plato Creado Correctamente");
-            
+            todos.add(platillo);
+            padre.platillos=todos;
+            padre.setVisible();
+            this.dispose();
         }else{
            JOptionPane.showMessageDialog(this, "Plato Repetido, Intente de nuevo"); 
         }
@@ -237,10 +241,11 @@ public class CreadorBebidas extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 
-    public CreadorBebidas(ArrayList<String> platillos, VentanaCatalogo padre) {//se le pasa los datos del platillo que va a modificar
+    public CreadorBebidas(ArrayList<String> platillos, VentanaCatalogo padre,ArrayList<Platillo> todos) {//se le pasa los datos del platillo que va a modificar
         initComponents();
         this.platillos=platillos;
         this.padre = padre;
+        this.todos=todos;
     }
 
 
