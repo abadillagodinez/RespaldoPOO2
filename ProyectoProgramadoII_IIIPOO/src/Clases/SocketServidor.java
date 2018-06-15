@@ -8,19 +8,32 @@ package Clases;
 import java.net.*;
 import java.io.*;
 import Controlador.ControladorServidor;
+<<<<<<< HEAD
 import Controlador.Reader;
+=======
+import Controlador.reader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+//me estaba tirando errores
+>>>>>>> master
 
 
 	 
 
-public class SocketServidor {
-
+public class SocketServidor extends Thread{
+    private static SocketServidor sk;
     private ControladorServidor controlador;
     public static boolean state = true;
     public static final int PORT = 4444;        //Puerto de conexion
     public static Socket socket;
-    public static void main(String args[]) throws IOException , ClassNotFoundException{
-        new SocketServidor().runServer();   //ejecuta el server
+    
+    private SocketServidor(){}
+    
+    public static SocketServidor getInstance(){
+        if(sk == null){
+            sk = new SocketServidor();
+        }
+        return sk;
     }
 
     public void runServer() throws IOException,ClassNotFoundException{
@@ -83,6 +96,15 @@ public class SocketServidor {
         this.controlador = controlador;
     }
     
-    
+    @Override
+    public void run(){
+        try {
+            runServer();
+        } catch (IOException ex) {
+            Logger.getLogger(SocketServidor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SocketServidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }
