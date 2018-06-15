@@ -7,13 +7,17 @@ package Clases;
 import java.io.Serializable;
 /**
  *
- * @author dereck
+ * Maneja la orden del cliente
  */
 public class OrdenCliente implements Serializable  {
     
     private Platillo platillo;
     private int cantidad;
-    
+    /**
+     * Constructor
+     * @param pl
+     * @param cant 
+     */
     OrdenCliente(Platillo pl,int cant){
         this.cantidad = cant;
         this.platillo = pl;

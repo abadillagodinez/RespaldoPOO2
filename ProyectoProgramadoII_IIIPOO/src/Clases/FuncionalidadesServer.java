@@ -5,6 +5,10 @@
  */
 package Clases;
 
+/**
+ * Clase que contiene las funciones del servidor
+ * 
+ */
 
 
 
@@ -15,19 +19,31 @@ public class FuncionalidadesServer {
     public static Platillo[] listaPlatillos;    //base de platillos totales
     public static double precioTotal;
     public static int caloriasTotales;
-    
+    /**
+     * Constructor
+     */
     public FuncionalidadesServer(){
         listaPlatillos = new Platillo[100];
     }
-    
+    /**
+     * Obtiene precio total
+     * @return precioTotal
+     */
     public double getPrecioTotal(){
         return precioTotal;
     }
+    /**
+     * Obtiene Calorias
+     * @return caloriasTotales
+     */
     public double getCaloriasTotal(){
         return caloriasTotales;
     }
     
-    
+    /**
+     * Procesa el pedido del cliente
+     * @param pedido 
+     */
     public void procesarPedido(Pedido pedido){      //recibo un pedido
         OrdenCliente[] orden = pedido.getPlatillos();
         
@@ -51,6 +67,11 @@ public class FuncionalidadesServer {
         
         
     }
+    /**
+     * Da el lugar del platillo en array
+     * @param pl
+     * @return resul
+     */
     public int buscarPlatillo(Platillo pl){
         int cont =0;
         int resul = 0;
@@ -68,7 +89,10 @@ public class FuncionalidadesServer {
         return resul;
         
     }
-    
+    /**
+     * Hace un string con el top ten platillos consumidos
+     * @return resul 
+     */
     public String topTen(){
         int contador = 0;
         int contTop = 0;
@@ -110,6 +134,11 @@ public class FuncionalidadesServer {
         }
         return resul;
     }
+    /**
+     * Obtiene el size del array
+     * @param p
+     * @return cont
+     */
     public int arrSize(Platillo[]p){
         int cont=0;
         while(p[cont]!=null){
@@ -117,7 +146,10 @@ public class FuncionalidadesServer {
         }
         return cont;
     }
-    
+    /**
+     * Obtiene los platos nunca consumidos
+     * @return resul
+     */
     public String topZero(){
         int cont = 0;
         String resul = "";

@@ -9,7 +9,7 @@ import java.util.Date;
 import java.io.Serializable;
 /**
  *
- * @author Sir Than II
+ * Maneja los pedidos 
  */
 public class Pedido implements Serializable  {
 
@@ -25,7 +25,16 @@ public class Pedido implements Serializable  {
     private String tipoPedido;  //lo puse string no enum por mientras
     private OrdenCliente[] platillos;
     public String resulSocket;
-    
+    /**
+     * Constructor
+     * @param nombreCliente
+     * @param sitio
+     * @param direccion
+     * @param valorExpress
+     * @param valorEmpaque
+     * @param tipo
+     * @param platillos 
+     */
     public Pedido(String nombreCliente,String sitio,String direccion,double valorExpress,double valorEmpaque,String tipo,OrdenCliente[] platillos){
         this.nombreCliente= nombreCliente;
         this.sitio = sitio;

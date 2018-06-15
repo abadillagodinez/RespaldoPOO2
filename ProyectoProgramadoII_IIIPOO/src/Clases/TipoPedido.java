@@ -9,6 +9,10 @@ package Clases;
  *
  * @author Sir Than II
  */
+/**
+ * 
+ * Enum que maneja los tipos de pedido
+ */
 public enum TipoPedido {
     LOCAL,LLEVAR,EXPRESS;
 }

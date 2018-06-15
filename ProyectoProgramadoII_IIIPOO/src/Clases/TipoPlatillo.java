@@ -5,7 +5,10 @@
  */
 package Clases;
 
-
+/**
+ * 
+ * Enum que maneja los tipos de platillo
+ */
 public enum TipoPlatillo {
     ETR,PRN,PTR,BEB;
 }
