@@ -13,8 +13,7 @@ public class SocketCliente extends Thread{
     public static boolean state = true;
     public static Socket socket;
     final String HOST = "localhost";
-    ObjectInputStream objectInputStream;
-    ObjectOutputStream objectOutputStream;
+
     
     public void runClient() throws IOException, ClassNotFoundException{
         
@@ -29,12 +28,15 @@ public class SocketCliente extends Thread{
     }
     
     public Platillo[] recibirCatalogo()throws IOException , ClassNotFoundException,UnknownHostException{
+        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());   // capta flujo de datos
         Platillo[] catalogo = (Platillo[]) objectInputStream.readObject();
         //System.out.println("se recibio el catalogo");
         return catalogo;
         
     }
     public void generarOrden(Pedido nuevoPedido)throws IOException , ClassNotFoundException,UnknownHostException{
+        
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());   //devuelve flujo de datos
         System.out.println("listo para enviar");
         objectOutputStream.writeObject("generarOrden");
         System.out.println("se envio el comando");
