@@ -173,7 +173,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCrear">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Crear"/>
+        <Property name="text" type="java.lang.String" value="Crear plato"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearActionPerformed"/>

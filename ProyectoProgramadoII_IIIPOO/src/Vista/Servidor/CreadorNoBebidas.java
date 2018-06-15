@@ -80,7 +80,7 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
             }
         });
 
-        btnCrear.setText("Crear");
+        btnCrear.setText("Crear plato");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);
@@ -310,9 +310,9 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton radioEntrada;
-    private javax.swing.JRadioButton radioPlatoF;
-    private javax.swing.JRadioButton radioPoste;
+    public javax.swing.JRadioButton radioEntrada;
+    public javax.swing.JRadioButton radioPlatoF;
+    public javax.swing.JRadioButton radioPoste;
     public javax.swing.JTextField txfCaloriasPorcion;
     public javax.swing.JTextField txfDescripcion;
     public javax.swing.JTextField txfNombre;

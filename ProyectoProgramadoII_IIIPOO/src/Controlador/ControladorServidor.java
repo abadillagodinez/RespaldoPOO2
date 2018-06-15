@@ -129,58 +129,63 @@ public class ControladorServidor implements ActionListener{
                     caseCreaBebida();
                     break;
                 }
-                else{
+                else if(ventCatalogo.radioBtnNoBebida.isSelected()){
                     caseCreaNoBebida();
                     break;
+                }
+                else{
+                    JOptionPane.showMessageDialog(ventana ,"Debe seleccionar al menos una vez",  "Error" , 1);
                 }
             case "Crear bebida":
                 boolean esNuevo=true;
                 Platillo platillo;
                 for(int i = 0; i < platillos.size(); i++){
-                    Platillo s = platillos.get(i);
-                    if(creaBebidas.txfNombre.getText().equals(s.getNombre())){
+                    Platillo actual = platillos.get(i);
+                    if(creaBebidas.txfNombre.getText().equals(actual.getNombre())){
                         esNuevo=false;
                         break;
                     }
                 }
-                    if(esNuevo){
-                        platillo= new Platillo(creaBebidas.txfNombre.getText(), creaBebidas.txfDescripcion.getText(), 
-                                Double.parseDouble(creaBebidas.txfPrecio.getText()), creaBebidas.txtTipoPorcion.getText(),
-                                "Bebida"+creaBebidas.txfNombre.getText(), Integer.parseInt(creaBebidas.txfCaloriasPorcion.getText()),
-                    Double.valueOf(creaBebidas.txtkcalMl.getText()), Double.valueOf(creaBebidas.txtMlporcion.getText()), TipoPlatillo.BEB);
-                    if(creaBebidas.bytesIMG!=null)
-                        platillo.setImagen(creaBebidas.bytesIMG);
-                    creaBebidas.setVoid();
-                    //platillo.setImagen(bytesIMG);
-                    //creaBebidas.setVoid();
-                        JOptionPane.showMessageDialog(creaBebidas, "Plato Creado Correctamente");
-                        creaBebidas.platoValido=true;
-                    }else{
-                       JOptionPane.showMessageDialog(creaBebidas, "Plato Repetido, Intente de nuevo"); 
-                    }
-            break;
-            case "Crear No Bebida":
-                boolean esNuevo=true;
-                Platillo platillo;
+                if(esNuevo){
+                    platillo= new Platillo(creaBebidas.txfNombre.getText(), creaBebidas.txfDescripcion.getText(), 
+                            Double.parseDouble(creaBebidas.txfPrecio.getText()), creaBebidas.txtTipoPorcion.getText(),
+                            "Bebida"+creaBebidas.txfNombre.getText(), Integer.parseInt(creaBebidas.txfCaloriasPorcion.getText()),
+                Double.valueOf(creaBebidas.txtkcalMl.getText()), Double.valueOf(creaBebidas.txtMlporcion.getText()), TipoPlatillo.BEB);
+                if(creaBebidas.bytesIMG!=null)
+                    platillo.setImagen(creaBebidas.bytesIMG);
+                creaBebidas.setVoid();
+                //platillo.setImagen(bytesIMG);
+                //creaBebidas.setVoid();
+                    JOptionPane.showMessageDialog(creaBebidas, "Plato Creado Correctamente");
+                    creaBebidas.platoValido=true;
+                    platillos.add(platillo);
+                }else{
+                   JOptionPane.showMessageDialog(creaBebidas, "Plato Repetido, Intente de nuevo"); 
+                }
+                    break;
+            case "Crear plato":
+                boolean esNuevo2 = true;
+                Platillo platilloN;
                 for(int i = 0; i < platillos.size(); i++){
-                    Platillo s = platillos.get(i);
-                    if(creaBebidas.txfNombre.getText().equals(s.getNombre())){
-                        esNuevo=false;
+                    Platillo ac = platillos.get(i);
+                    if(creaBebidas.txfNombre.getText().equals(ac.getNombre())){
+                        esNuevo2=false;
                         break;
                     }
                 }
-                    if(esNuevo){
-                        platillo= new Platillo(creaBebidas.txfNombre.getText(), creaBebidas.txfDescripcion.getText(), 
+                    if(esNuevo2){
+                        platilloN= new Platillo(creaBebidas.txfNombre.getText(), creaBebidas.txfDescripcion.getText(), 
                                 Double.parseDouble(creaBebidas.txfPrecio.getText()), creaBebidas.txtTipoPorcion.getText(),
                                 "Bebida"+creaBebidas.txfNombre.getText(), Integer.parseInt(creaBebidas.txfCaloriasPorcion.getText()),
                     Double.valueOf(creaBebidas.txtkcalMl.getText()), Double.valueOf(creaBebidas.txtMlporcion.getText()), TipoPlatillo.BEB);
                     if(creaBebidas.bytesIMG!=null)
-                        platillo.setImagen(creaBebidas.bytesIMG);
+                        platilloN.setImagen(creaBebidas.bytesIMG);
                     creaBebidas.setVoid();
                     //platillo.setImagen(bytesIMG);
                     //creaBebidas.setVoid();
                         JOptionPane.showMessageDialog(creaBebidas, "Plato Creado Correctamente");
                         creaBebidas.platoValido=true;
+                        platillos.add(platilloN);
                     }else{
                        JOptionPane.showMessageDialog(creaBebidas, "Plato Repetido, Intente de nuevo"); 
                     }
@@ -254,7 +259,7 @@ public class ControladorServidor implements ActionListener{
         creaBebidas.txfPrecio.addActionListener(this);
         creaBebidas.txtMlporcion.addActionListener(this);
         creaBebidas.txtTipoPorcion.add*/
-        creaBebidas.setVisible(true);
+        creaNoBebidas.setVisible(true);
     }
     
     public VentanaPrincipalServidor getPrincipal(){
