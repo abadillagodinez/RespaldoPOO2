@@ -25,17 +25,22 @@ public class SocketServidor extends Thread{
     public static final int PORT = 4444;        //Puerto de conexion
     public static Socket socket;
     public  static ServerSocket serverSocket;
+    
     private SocketServidor(){}
-    
-    
-    
+    /**
+     * Crea un nuevo servidor
+     * @return una instancia a SocketServidor
+     */
     public static SocketServidor getInstance(){
         if(sk == null){
             sk = new SocketServidor();
         }
         return sk;
     }
-    
+    /**
+     * Envia el array de platillos que contiene el catalogo al cliente
+     * @throws IOException 
+     */
     public void enviarCatalogo() throws IOException{
         Reader xml = new Reader();
         Platillo[] lplatillo;
@@ -43,19 +48,31 @@ public class SocketServidor extends Thread{
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());   //devuelve flujo de datos
         objectOutputStream.writeObject(lplatillo);//aqui manda el catalogo por el socket
     }
-    
+    /**
+     * 
+     * @return Pedido de un usuario
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public Pedido recibirPedido() throws IOException, ClassNotFoundException{
         ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());   // capta flujo de datos
         Pedido pedido = (Pedido) objectInputStream.readObject();
         return pedido;
     }
-
+    /**
+     * Abre el puerto para que lleguen conexiones del cliente
+     * @throws IOException 
+     */
     public void esperarAlCliente() throws IOException{
         serverSocket = new ServerSocket(PORT); //abre el puerto para conexiones
         System.out.println("Listo para conexiones...");
     }
     
-    
+    /**
+     * Hace que el servidor acepte conexiones
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public void runServer() throws IOException,ClassNotFoundException{
         
         while (state){ 
@@ -68,16 +85,19 @@ public class SocketServidor extends Thread{
 
     }
     
-//    private void probar(Pedido p){
-//        p.setSocket(p.getNombreCliente());      //devuelve nombre de platillo dado por cliente
-//        
-//    }
-    
+
+    /**
+     * 
+     * @param controlador 
+     */
     public void setControlador(ControladorServidor controlador){
         this.controlador = controlador;
     }
     
     @Override
+    /**
+     * corre el servidor
+     */
     public void run(){
         try {
             runServer();

@@ -6,7 +6,6 @@
 package proyectoprogramadoii_iiipoo;
 
 import Vista.Cliente.VentanaPrincipalCliente;
-
 /**
  *
  * @author retr0

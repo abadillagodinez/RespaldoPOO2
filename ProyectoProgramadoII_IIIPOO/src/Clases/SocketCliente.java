@@ -17,31 +17,45 @@ public class SocketCliente extends Thread{
     public static Socket socket;
     final String HOST = "localhost";
     public Platillo[] catalogo; 
-
+    /**
+     * 
+     * @return una instancia del SocketCliente
+     */
     public static SocketCliente getInstance(){
         if(sc == null){
             sc = new SocketCliente();
         }
         return sc;
     }
-    
+    /**
+     * conecta el cliente con el servidor
+     */
     private SocketCliente(){
         ConectarCliente();
     }
-    
+    /**
+     * Corre el cliente
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public void runClient() throws IOException, ClassNotFoundException{
         
         while(state){
             catalogo = recibirCatalogo();
         }
     }
-    
+    /**
+     * imprime el catalogo actual
+     */
     public void printCat(){
         for(int i = 0; i < catalogo.length; i++){
             Platillo actual = catalogo[i];
             System.out.println(actual.nombre);
         }
     }
+    /**
+     * Conecta el cliente al servidor 
+     */
     public void ConectarCliente(){
         try {
             socket = new Socket(HOST,SocketServidor.PORT);//conecta al mismo puerto del servidor
@@ -50,7 +64,13 @@ public class SocketCliente extends Thread{
         }
 
     }
-    
+    /**
+     * Recibe el catalogo que el servidor le envia
+     * @return el catalogo con todos los platillos
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws UnknownHostException 
+     */
     public Platillo[] recibirCatalogo()throws IOException , ClassNotFoundException,UnknownHostException{
         ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());   // capta flujo de datos
         Platillo[] catalogo = (Platillo[]) objectInputStream.readObject();
@@ -58,6 +78,13 @@ public class SocketCliente extends Thread{
         return catalogo;
         
     }
+    /**
+     * Envia el nuevo pedido
+     * @param nuevoPedido
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws UnknownHostException 
+     */
     public void generarOrden(Pedido nuevoPedido)throws IOException , ClassNotFoundException,UnknownHostException{
         
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());   //devuelve flujo de datos
@@ -72,6 +99,9 @@ public class SocketCliente extends Thread{
     }
 
     @Override
+    /**
+     * ejecuta el cliente
+     */
     public void run(){
         try {
             runClient();
@@ -81,8 +111,7 @@ public class SocketCliente extends Thread{
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-<<<<<<< HEAD
+
 //    public static void main(String args[])throws IOException , ClassNotFoundException,UnknownHostException {
 //        SocketCliente nuevaConexion = new SocketCliente();
 //        Platillo[] catalogo = nuevaConexion.recibirCatalogo();
@@ -101,8 +130,7 @@ public class SocketCliente extends Thread{
         
         
         //Orden de cliente*****************
-        
-=======
+      
     public static void main(String args[])throws IOException , ClassNotFoundException,UnknownHostException {
         SocketCliente nuevaConexion = new SocketCliente();
         Platillo[] catalogo = nuevaConexion.recibirCatalogo();
@@ -122,7 +150,6 @@ public class SocketCliente extends Thread{
 //        
 //        //Orden de cliente*****************
 //        
->>>>>>> master
 //        Platillo platillo1 = new Platillo("pollo",1000,200);    //nombre precio y calorias
 //        OrdenCliente orden1 = new OrdenCliente(platillo1,4);//platillo y cantidad
 //        
@@ -146,11 +173,9 @@ public class SocketCliente extends Thread{
 //        System.out.println("ya paso de generarOrden");
         
         
-<<<<<<< HEAD
+
 //    }
-=======
     }
->>>>>>> master
 
     
 }

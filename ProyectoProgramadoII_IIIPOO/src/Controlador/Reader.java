@@ -18,9 +18,12 @@ import java.util.Arrays;
 
 public class Reader {
     
-   
+   /**
+    * Crea la lista de platillos para el catalago
+    * @return lista de platillos
+    */
    public Platillo[] XMLReader(){
-       Platillo[] listaPlatillos = new Platillo[2];//ACA ESTA LA LISTA 
+       Platillo[] listaPlatillos = new Platillo[100];//ACA ESTA LA LISTA 
        try {
          
          Platillo platillo = new Platillo();

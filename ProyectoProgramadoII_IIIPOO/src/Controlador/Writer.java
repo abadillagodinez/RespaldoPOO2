@@ -24,7 +24,10 @@ import Clases.Platillo;
 import Clases.TipoPlatillo;
 import Clases.imgHandler;
 public class Writer {
-    
+    /**
+     * Escribe en un archivo XML el catalogo
+     * @param platillos 
+     */
     public void Writer(Platillo[] platillos){
         try {
 
