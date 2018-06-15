@@ -12,7 +12,6 @@ import Controlador.ControladorServidor;
 import Controlador.Reader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//me estaba tirando errores
 
 
 
@@ -25,13 +24,7 @@ public class SocketServidor extends Thread{
     public static final int PORT = 4444;        //Puerto de conexion
     public static Socket socket;
     public  static ServerSocket serverSocket;
-<<<<<<< HEAD
-=======
-    public SocketServidor(){}
-    
-    
->>>>>>> master
-    
+
     private SocketServidor(){}
     /**
      * Crea un nuevo servidor
