@@ -7,13 +7,14 @@ package Vista.Cliente;
 
 import javax.swing.JOptionPane;
 import Clases.Platillo;
+import Controlador.ControladorCliente;
 
 /**
  *
  * @author retr0
  */
 public class VentanaPrincipalCliente extends javax.swing.JFrame {
-
+    ControladorCliente cl;
     /**
      * Creates new form VentanaPrincipal
      */
@@ -22,6 +23,9 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         setResizable(false);
     }
 
+    public void setControlador(ControladorCliente cl){
+        this.cl = cl;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,6 +51,11 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alfabéticamente", "Porción", "Peso" }));
 
         btnAñadir.setText("Añadir al carrito");
+        btnAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAñadirActionPerformed(evt);
+            }
+        });
 
         verCarrito.setText("Ver carrito");
         verCarrito.addActionListener(new java.awt.event.ActionListener() {
@@ -139,39 +148,27 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
 
     private void btnPedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedirActionPerformed
         // TODO add your handling code here:
-        if(!rbtAca.isSelected() && !rbtExpress.isSelected() && !rbtLlevar.isSelected()){
-            JOptionPane.showMessageDialog(this, "Debe seleccionar solo una forma de pedido", "Error", 0);
-        }
-        else if(rbtAca.isSelected()){
-            //codigo para pedir
-        }
-        else if(rbtExpress.isSelected()){
-            VentanaExpress nuevo = new VentanaExpress();
-            nuevo.setVisible(true);
-        }          
-        else if(rbtLlevar.isSelected()){
-            VentanaLLevar nuevo = new VentanaLLevar();
-            nuevo.setVisible(true);
-        }
     }//GEN-LAST:event_btnPedirActionPerformed
 
     private void verCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verCarritoActionPerformed
         // TODO add your handling code here:
-        VentanaVerCarrito nueva = new VentanaVerCarrito();
-        nueva.setVisible(true);
     }//GEN-LAST:event_verCarritoActionPerformed
+
+    private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAñadirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAñadir;
-    private javax.swing.JButton btnMostrarCalorias;
-    private javax.swing.JButton btnPedir;
-    private javax.swing.JComboBox<String> cbxFiltro;
+    public javax.swing.JButton btnAñadir;
+    public javax.swing.JButton btnMostrarCalorias;
+    public javax.swing.JButton btnPedir;
+    public javax.swing.JComboBox<String> cbxFiltro;
     private javax.swing.JPanel jPanel1;
-    private java.awt.List lstComidas;
-    private javax.swing.JRadioButton rbtAca;
-    private javax.swing.JRadioButton rbtExpress;
-    private javax.swing.JRadioButton rbtLlevar;
-    private javax.swing.JButton verCarrito;
+    public java.awt.List lstComidas;
+    public javax.swing.JRadioButton rbtAca;
+    public javax.swing.JRadioButton rbtExpress;
+    public javax.swing.JRadioButton rbtLlevar;
+    public javax.swing.JButton verCarrito;
     // End of variables declaration//GEN-END:variables
 }
