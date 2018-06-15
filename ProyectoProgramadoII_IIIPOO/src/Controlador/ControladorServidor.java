@@ -26,7 +26,7 @@ public class ControladorServidor implements ActionListener{
     private VentanaPrincipalServidor ventana;
     private VentanaCatalogo ventCatalogo;
     private VentanaLogin login;
-    private SocketServidor servidor;
+    public static SocketServidor servidor;
     private ArrayList<Platillo> platillos = new ArrayList<Platillo>();
     
     public ControladorServidor() throws IOException{
@@ -34,14 +34,17 @@ public class ControladorServidor implements ActionListener{
         
         //
         servidor = SocketServidor.getInstance();
+        servidor.esperarAlCliente();
         servidor.start();
         login = new VentanaLogin();
         login.btnLogin.addActionListener(this);
         login.setVisible(true);
     }
     
+    
     public void actionPerformed(ActionEvent e){
         switch(e.getActionCommand()){
+            //caso del login
             case "Login":
                 if(login.txfUsername.getText().equals(admin) && login.pwfContrasegna.getText().equals(contrasegna)){
                     caseLogin();
@@ -49,6 +52,7 @@ public class ControladorServidor implements ActionListener{
                 }else{
                     JOptionPane.showMessageDialog(ventana ,"Usuario y/o contraseña incorrecta",  "Error" , 1);
                 }
+            //metodos de la ventana principal
             case "Catálogo":
                 caseCatalogo();
                 break;
@@ -100,6 +104,16 @@ public class ControladorServidor implements ActionListener{
             case "Estadísticas":
                 VentanaEstadisticas nuevaEstadisticas = new VentanaEstadisticas();
                 nuevaEstadisticas.setVisible(true);
+                break;
+            
+            //casos de la ventana catalogo
+            case "No Bebida":
+                ventCatalogo.radioBtnBebida.setSelected(false);
+                ventCatalogo.radioBtnNoBebida.setSelected(true);
+                break;
+            case "Bebida":
+                ventCatalogo.radioBtnBebida.setSelected(true);
+                ventCatalogo.radioBtnNoBebida.setSelected(false);
                 break;
                 
         }        

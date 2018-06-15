@@ -24,7 +24,7 @@ public class SocketServidor extends Thread{
     public static boolean state = true;
     public static final int PORT = 4444;        //Puerto de conexion
     public static Socket socket;
-    ServerSocket serverSocket;
+    public  static ServerSocket serverSocket;
     private SocketServidor(){}
     
     
@@ -57,9 +57,10 @@ public class SocketServidor extends Thread{
     
     
     public void runServer() throws IOException,ClassNotFoundException{
+        
         while (state){ 
-            esperarAlCliente();
             socket = serverSocket.accept();//acepta conexion
+            enviarCatalogo();
             System.out.println(socket);
             Pedido nuevo = recibirPedido();
         }

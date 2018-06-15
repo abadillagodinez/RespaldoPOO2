@@ -32,9 +32,11 @@ public class ControladorCliente implements ActionListener{
     private ArrayList<Platillo> carrito = new ArrayList<Platillo>(); //posive lista para el carrito
     
     public ControladorCliente(VentanaPrincipalCliente ventana) throws IOException, ClassNotFoundException{
-        cliente = new SocketCliente();
+        
+        cliente = SocketCliente.getInstance();
         cliente.ConectarCliente();
-        cliente.run();
+        cliente.start();
+        System.out.println();
         this.ventana = ventana;
         this.ventana.btnAñadir.addActionListener((ActionListener)this);
         this.ventana.btnMostrarCalorias.addActionListener((ActionListener)this);
@@ -42,7 +44,7 @@ public class ControladorCliente implements ActionListener{
         this.ventana.cbxFiltro.addActionListener((ActionListener)this);
         this.ventana.verCarrito.addActionListener((ActionListener)this);
         this.ventana.setVisible(true);
-        
+        //cliente.printCat();
     }
     
     @Override
