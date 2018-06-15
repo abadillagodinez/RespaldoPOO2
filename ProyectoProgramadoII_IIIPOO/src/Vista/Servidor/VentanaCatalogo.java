@@ -24,13 +24,15 @@ public class VentanaCatalogo extends javax.swing.JFrame {
      */
     public VentanaCatalogo(ArrayList<Platillo> platillos) {
         this.platillos=platillos;
+        
         initComponents();
         if(platillos.isEmpty()){
             lstComidas.add("No existen platillos");
         }else{
             for (Platillo platillosSelec1 : platillos) {
-            lstComidas.add(platillosSelec1.toString());
-        }
+                lstComidas.add(platillosSelec1.toString());
+            }
+        
         }
     }
 
@@ -207,11 +209,9 @@ public class VentanaCatalogo extends javax.swing.JFrame {
             nombres.add(p.getNombre());
         });
         if(radioBtnBebida.isSelected()){
-            CreadorBebidas nuevo= new CreadorBebidas(nombres);
+            CreadorBebidas nuevo= new CreadorBebidas(nombres, this);
             nuevo.setVisible(true);
-            while(nuevo.isVisible()){
-                //esperar
-            }
+            this.setVisible(false);
             if(nuevo.platoValido){
                 platillos.add(nuevo.getPlatillo());
             }
@@ -249,4 +249,5 @@ public class VentanaCatalogo extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioBtnBebida;
     private javax.swing.JRadioButton radioBtnNoBebida;
     // End of variables declaration//GEN-END:variables
+
 }
