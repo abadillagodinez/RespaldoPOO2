@@ -6,6 +6,7 @@
 package Vista.Servidor;
 
 import Clases.Platillo;
+import Clases.TipoPlatillo;
 import Clases.imgHandler;
 import java.io.File;
 import java.util.ArrayList;
@@ -191,20 +192,13 @@ public class CreadorBebidas extends javax.swing.JFrame {
             }
         }
         if(esNuevo){
-            platillo= new Platillo();
-            platillo.setCalorias(Integer.parseInt(txfCaloriasPorcion.getText()));
-            platillo.setDescripcion(txfDescripcion.getText());
-            platillo.setNombre(txfNombre.getText());
-            platillo.setPrecio(Double.parseDouble(txfPrecio.getText()));
-            platillo.setTipoPorcion(txtTipoPorcion.getText());
-            platillo.setHabilitado(true);
-            platillo.setCantPedidos(0);
-            platillo.setCodClave("Bebida"+platillo.getNombre()); 
-            platillo.setKilokcalPorGramo(Double.valueOf(txtkcalMl.getText()));
-            platillo.setGramosPorPorcion(Double.valueOf(txtMlporcion.getText()));
+            platillo= new Platillo(txfNombre.getText(), txfDescripcion.getText(), Double.parseDouble(txfPrecio.getText()),
+                    txtTipoPorcion.getText(), "Bebida"+txfNombre.getText(), Integer.parseInt(txfCaloriasPorcion.getText()),
+                    Double.valueOf(txtkcalMl.getText()), Double.valueOf(txtMlporcion.getText()), TipoPlatillo.BEB);
             platillo.setImagen(bytesIMG);
-            JOptionPane.showMessageDialog(this, "Plato Creado Correctamente");
             platoValido=true;
+            JOptionPane.showMessageDialog(this, "Plato Creado Correctamente");
+            
         }else{
            JOptionPane.showMessageDialog(this, "Plato Repetido, Intente de nuevo"); 
         }

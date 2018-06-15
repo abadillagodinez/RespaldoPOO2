@@ -6,6 +6,7 @@
 package Vista.Servidor;
 
 import Clases.Platillo;
+import Clases.TipoPlatillo;
 import Clases.imgHandler;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -53,6 +54,10 @@ public class VentanaModificar extends javax.swing.JFrame {
         togleHabilitado = new javax.swing.JToggleButton();
         btnVerImagen = new javax.swing.JButton();
         btnCambiarImg = new javax.swing.JButton();
+        lblCantPorcion = new javax.swing.JLabel();
+        lblCalUnid = new javax.swing.JLabel();
+        txtUnidXporc = new javax.swing.JTextField();
+        txtKcalPorc = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -107,6 +112,18 @@ public class VentanaModificar extends javax.swing.JFrame {
             }
         });
 
+        txtUnidXporc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUnidXporcActionPerformed(evt);
+            }
+        });
+
+        txtKcalPorc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtKcalPorcActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,18 +132,24 @@ public class VentanaModificar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnAplicar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
+                        .addComponent(togleHabilitado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVerImagen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCambiarImg))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblCalUnid)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnAplicar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2))
+                            .addComponent(lblCantPorcion))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -134,14 +157,14 @@ public class VentanaModificar extends javax.swing.JFrame {
                                         .addComponent(txfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                                         .addComponent(txtTipoPorcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                                         .addComponent(txfCaloriasPorcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
-                                    .addComponent(txfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(togleHabilitado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVerImagen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCambiarImg)))
+                                    .addComponent(txfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUnidXporc, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtKcalPorc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,7 +190,15 @@ public class VentanaModificar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUnidXporc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCantPorcion))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCalUnid)
+                    .addComponent(txtKcalPorc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(togleHabilitado)
                     .addComponent(btnVerImagen)
@@ -194,6 +225,8 @@ public class VentanaModificar extends javax.swing.JFrame {
         platillo.setPrecio(Double.parseDouble(txfPrecio.getText()));
         platillo.setTipoPorcion(txtTipoPorcion.getText());
         platillo.setHabilitado(togleHabilitado.isSelected());
+        platillo.setGramosPorPorcion(Double.valueOf(txtUnidXporc.getText()));
+        platillo.setKilokcalPorGramo(Double.valueOf(txtKcalPorc.getText()));
         JOptionPane.showMessageDialog(this, "Cambios guardados exitosamente");
         this.setVisible(false);
     }//GEN-LAST:event_btnAplicarActionPerformed
@@ -228,6 +261,14 @@ public class VentanaModificar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txfNombreActionPerformed
 
+    private void txtUnidXporcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnidXporcActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUnidXporcActionPerformed
+
+    private void txtKcalPorcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKcalPorcActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKcalPorcActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicar;
@@ -239,12 +280,16 @@ public class VentanaModificar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel lblCalUnid;
+    private javax.swing.JLabel lblCantPorcion;
     private javax.swing.JToggleButton togleHabilitado;
     private javax.swing.JTextField txfCaloriasPorcion;
     private javax.swing.JTextField txfDescripcion;
     private javax.swing.JTextField txfNombre;
     private javax.swing.JTextField txfPrecio;
+    private javax.swing.JTextField txtKcalPorc;
     private javax.swing.JTextField txtTipoPorcion;
+    private javax.swing.JTextField txtUnidXporc;
     // End of variables declaration//GEN-END:variables
 
 
@@ -257,6 +302,15 @@ public class VentanaModificar extends javax.swing.JFrame {
         txfNombre.setText(platillo.getNombre());
         txfPrecio.setText(String.valueOf(platillo.getPrecio()));
         txtTipoPorcion.setText(platillo.getTipoPorcion());
+        txtKcalPorc.setText(String.valueOf(platillo.getKilokcalPorGramo()));
+        txtUnidXporc.setText(String.valueOf(platillo.getGramosPorPorcion()));
+        if(platillo.getTipoPlatillo().equals(TipoPlatillo.BEB)){
+            lblCalUnid.setText("Calorias por miniLitros");
+            lblCantPorcion.setText("MiniLitros por porcion");
+        }else{
+            lblCalUnid.setText("Calorias por gramos");
+            lblCantPorcion.setText("Gramos por porcion");
+        }
     }
 
 

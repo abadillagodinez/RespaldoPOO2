@@ -16,8 +16,8 @@ import java.util.Date;
 public class Historial {//singleton
 
     private static Historial unicoHistorial=null;
-    private Date fecha;//dia de hoy, tener en cuenta para el la introduccion al historial
-    private ArrayList<String> cambios;
+    public Date fecha;//dia de hoy, tener en cuenta para el la introduccion al historial
+    public ArrayList<String> cambios;
 
     private Historial() {
         fecha=Calendar.getInstance().getTime();

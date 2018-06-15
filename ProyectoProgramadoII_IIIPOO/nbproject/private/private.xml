@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
@@ -25,3 +26,28 @@
         </group>
     </open-files>
 </project-private>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Clases/OrdenCliente.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Clases/SocketCliente.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Vista/Servidor/VentanaTop10.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Vista/Servidor/VentanaCatalogo.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Clases/TipoPlatillo.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Clases/Pedido.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Controlador/ControladorServidor.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Clases/imgHandler.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Vista/Servidor/VentanaPrincipalServidor.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Clases/TipoPedido.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Clases/FuncionalidadesServer.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Clases/Platillo.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Clases/SocketServidor.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Vista/Servidor/CreadorBebidas.java</file>
+            <file>file:/C:/Users/Sir%20Than%20II/2018/poo/3eraProgra/RespaldoPOO2/ProyectoProgramadoII_IIIPOO/src/Vista/Servidor/CreadorNoBebidas.java</file>
+        </group>
+    </open-files>
+</project-private>
+>>>>>>> Stashed changes
