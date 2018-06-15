@@ -25,8 +25,6 @@ public class SocketServidor extends Thread{
     public static final int PORT = 4444;        //Puerto de conexion
     public static Socket socket;
     ServerSocket serverSocket;
-    ObjectOutputStream objectOutputStream1;
-    ObjectInputStream objectInputStream;
     private SocketServidor(){}
     
     
@@ -42,10 +40,12 @@ public class SocketServidor extends Thread{
         Reader xml = new Reader();
         Platillo[] lplatillo;
         lplatillo = xml.XMLReader();//lee el archivo XML
-        objectOutputStream1.writeObject(lplatillo);//aqui manda el catalogo por el socket
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());   //devuelve flujo de datos
+        objectOutputStream.writeObject(lplatillo);//aqui manda el catalogo por el socket
     }
     
     public Pedido recibirPedido() throws IOException, ClassNotFoundException{
+        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());   // capta flujo de datos
         Pedido pedido = (Pedido) objectInputStream.readObject();
         return pedido;
     }
