@@ -110,6 +110,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Historial"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHistorialActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -147,6 +150,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Valor express"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnValorExpressActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -164,7 +170,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnEnviarCatalogo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enviar c&#xe1;logo"/>
+        <Property name="text" type="java.lang.String" value="Enviar cat&#xe1;logo"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnviarCatalogoActionPerformed"/>

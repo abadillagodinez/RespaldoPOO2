@@ -1,7 +1,6 @@
 
 package Clases;
 
-import static Clases.FuncionalidadesServer.listaPlatillos;
 
 import java.net.*;
 

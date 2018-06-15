@@ -6,6 +6,7 @@
 package Vista.Servidor;
 
 import Clases.Platillo;
+import Controlador.Writer;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,6 +64,11 @@ public class VentanaCatalogo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alfabéticamente", "Porción", "Peso" }));
+        cbxFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxFiltroActionPerformed(evt);
+            }
+        });
 
         lstComidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +112,11 @@ public class VentanaCatalogo extends javax.swing.JFrame {
         });
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,25 +179,20 @@ public class VentanaCatalogo extends javax.swing.JFrame {
         String codigoPlatillo=lstComidas.getSelectedItem();
         for(Platillo pl:platillos){
             if(pl.toString().equals(codigoPlatillo)){
-                VentanaModificar nueva = new VentanaModificar(pl);
+                VentanaModificar nueva = new VentanaModificar(pl,this);
                 nueva.setVisible(true);
-                while(nueva.isVisible()){//para que espere antes de guardar los cambios
-                    try {
-                        //esperar
-                        this.wait(50);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(VentanaCatalogo.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                pl.setCalorias(nueva.getPlatillo().getCalorias());
-                pl.setDescripcion(nueva.getPlatillo().getDescripcion());
-                pl.setNombre(nueva.getPlatillo().getNombre());
-                pl.setPrecio(nueva.getPlatillo().getPrecio());
-                pl.setTipoPorcion(nueva.getPlatillo().getTipoPorcion());
-                pl.setHabilitado(nueva.getPlatillo().getHabilitado());
-                pl.setImagen(nueva.getPlatillo().getImagen());
+                this.setVisible(false);
+//                while(nueva.isVisible()){//para que espere antes de guardar los cambios
+//                    try {
+//                        //esperar
+//                        this.wait(50);
+//                    } catch (InterruptedException ex) {
+//                        Logger.getLogger(VentanaCatalogo.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                }
+                
                 //aca ya todos los cambios se guardaron
-                nueva.dispose();
+                //nueva.dispose();
                 break;
             }
         }
@@ -203,39 +209,58 @@ public class VentanaCatalogo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    
+    public void setVisible(){//mvp
+        setVisible(true);
+        lstComidas.removeAll();
+        for(Platillo p:platillos){
+            lstComidas.add(p.toString());
+        }
+        if(!platillos.isEmpty()){
+            Writer escribir=new Writer();
+            escribir.Writer(platillos.toArray(new Platillo[platillos.size()]));
+        }
+        
+        
+    }
+    
     private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
         ArrayList<String> nombres=new ArrayList<>();
         platillos.forEach((p) -> {
             nombres.add(p.getNombre());
         });
         if(radioBtnBebida.isSelected()){
-            CreadorBebidas nuevo= new CreadorBebidas(nombres, this);
+            CreadorBebidas nuevo= new CreadorBebidas(nombres, this,platillos);
             nuevo.setVisible(true);
             this.setVisible(false);
-            if(nuevo.platoValido){
-                platillos.add(nuevo.getPlatillo());
-            }
+            
         }else if(radioBtnNoBebida.isSelected()){
-            CreadorNoBebidas nuevo= new CreadorNoBebidas(nombres);
+            CreadorNoBebidas nuevo= new CreadorNoBebidas(nombres,this);
             nuevo.setVisible(true);
-            while(nuevo.isVisible()){
-                //esperar
-            }
-            if(nuevo.platoValido){
-                platillos.add(nuevo.getPlatillo());
-            }
+//            while(nuevo.isVisible()){
+//                //esperar
+//            }
+            
         }
     }//GEN-LAST:event_btnAnadirActionPerformed
 
     private void radioBtnNoBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnNoBebidaActionPerformed
-//       radioBtnBebida.setSelected(false);
-//       radioBtnNoBebida.setSelected(true);
+       radioBtnBebida.setSelected(false);
+       radioBtnNoBebida.setSelected(true);
     }//GEN-LAST:event_radioBtnNoBebidaActionPerformed
 
     private void radioBtnBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnBebidaActionPerformed
-//       radioBtnBebida.setSelected(true);
-//       radioBtnNoBebida.setSelected(false);
+       radioBtnBebida.setSelected(true);
+       radioBtnNoBebida.setSelected(false);
     }//GEN-LAST:event_radioBtnBebidaActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void cbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFiltroActionPerformed
+       lstComidas.
+    }//GEN-LAST:event_cbxFiltroActionPerformed
 
     
 
