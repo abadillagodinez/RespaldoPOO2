@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 /**
  *
- * @author Sir Than II
+ * Maneja imagenes
  */
 public class imgHandler {
     public FileInputStream entrada;
@@ -19,7 +19,11 @@ public class imgHandler {
     public imgHandler(){
         
     }
-    
+    /**
+     * Abre una imagen
+     * @param arch
+     * @return bytesImg
+     */
     public byte[] AbrirIMG(File arch){
         Long i = arch.length();
         Integer i2= i.intValue(); 
@@ -35,6 +39,12 @@ public class imgHandler {
         }
         return bytesImg;
     }
+    /**
+     * Guarda una imagen
+     * @param arch
+     * @param bytesImg
+     * @return respuesta
+     */
     
     public String GuardarIMG(File arch, byte[] bytesImg){
         String respuesta=null;

@@ -2,6 +2,10 @@
 package Clases;
 
 import java.io.Serializable;
+/**
+ * 
+ * Crea los platillos
+ */
 
 public class Platillo implements Serializable{      //Cada clase que quiere pasar un objeto por el socket debe ser Serializable
 
@@ -24,7 +28,18 @@ public class Platillo implements Serializable{      //Cada clase que quiere pasa
     protected TipoPlatillo tipoPlatillo;                      //comente estos dos porque ambos deben ser serializables
     
     public String resulSocket;                                  //agregue esto para ver si funcionaba el socket
-
+    /**
+     * Constructor
+     * @param nombre
+     * @param descripcion
+     * @param precio
+     * @param tipoPorcion
+     * @param codClave
+     * @param calorias
+     * @param kcalGramo
+     * @param gPorcion
+     * @param tipop 
+     */
     public Platillo(String nombre, String descripcion, double precio, String tipoPorcion,
             String codClave, int calorias, double kcalGramo, double gPorcion, TipoPlatillo tipop){
         this.habilitado=true;

@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author retr0
+ * Clase que controla el servidor
  */
 public class ControladorServidor implements ActionListener{
     private final String admin = "admin";
@@ -32,7 +32,10 @@ public class ControladorServidor implements ActionListener{
     private VentanaLogin login;
     public static SocketServidor servidor;
     private ArrayList<Platillo> platillos = new ArrayList<Platillo>();
-    
+    /**
+     * Constructor
+     * @throws IOException 
+     */
     public ControladorServidor() throws IOException{
         //cuando lo meta en el action listener
         
@@ -44,7 +47,10 @@ public class ControladorServidor implements ActionListener{
         login.btnLogin.addActionListener(this);
         login.setVisible(true);
     }
-    
+    /**
+     * Manejador de eventos en interfaz
+     * @param e 
+     */
     
     public void actionPerformed(ActionEvent e){
         switch(e.getActionCommand()){
@@ -226,7 +232,9 @@ public class ControladorServidor implements ActionListener{
         ventCatalogo.radioBtnNoBebida.addActionListener(this);
         ventCatalogo.setVisible(true);
     }
-    
+    /**
+     * Metodo en el caso que sea CrearBebida
+     */
     private void caseCreaBebida(){
         ArrayList<String> nombres = new ArrayList<String>();
         for(int i = 0; i < platillos.size(); i++){
@@ -243,6 +251,9 @@ public class ControladorServidor implements ActionListener{
         creaBebidas.txtTipoPorcion.add*/
         creaBebidas.setVisible(true);
     }
+    /**
+     * Metodo en el caso de que sea no crear bebida
+     */
     
     private void caseCreaNoBebida(){
         ArrayList<String> nombres = new ArrayList<String>();

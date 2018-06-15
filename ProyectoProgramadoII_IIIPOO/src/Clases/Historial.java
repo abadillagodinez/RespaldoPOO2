@@ -10,31 +10,42 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- *
- * @author Sir Than II
+ *Clase que hace el historial de pedidos
+ * 
  */
 public class Historial {//singleton
 
     private static Historial unicoHistorial=null;
     public Date fecha;//dia de hoy, tener en cuenta para el la introduccion al historial
     public ArrayList<String> cambios;
-
+    /**
+     * constructor privado
+     */
     private Historial() {
         fecha=Calendar.getInstance().getTime();
         cambios= new ArrayList<>();
     }
-    
+    /**
+     * Obtiene instancia de Historial
+     * @return unicoHistorial
+     */
     public synchronized static Historial getInstance(){
         if(unicoHistorial==null){
             unicoHistorial=new Historial(); 
         }
         return unicoHistorial;
     }
-
+    /**
+     * Obtiene Historial
+     * @return unicoHistorial
+     */
     public static Historial getUnicoHistorial() {
         return unicoHistorial;
     }
-
+    /**
+     * Setean el historial
+     * @param unicoHistorial 
+     */
     public static void setUnicoHistorial(Historial unicoHistorial) {
         Historial.unicoHistorial = unicoHistorial;
     }

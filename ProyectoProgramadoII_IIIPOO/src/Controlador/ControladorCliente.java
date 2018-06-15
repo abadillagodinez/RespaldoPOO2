@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author retr0
+ * Controlador para el Cliente
  */
 public class ControladorCliente implements ActionListener{
     private VentanaPrincipalCliente ventana;
@@ -30,7 +30,12 @@ public class ControladorCliente implements ActionListener{
     private SocketCliente cliente;
     private ArrayList<Platillo> platillos = new ArrayList<Platillo>();
     private ArrayList<Platillo> carrito = new ArrayList<Platillo>(); //posive lista para el carrito
-    
+    /**
+     * Constructor
+     * @param ventana
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public ControladorCliente(VentanaPrincipalCliente ventana) throws IOException, ClassNotFoundException{
         
         cliente = SocketCliente.getInstance();
@@ -46,6 +51,10 @@ public class ControladorCliente implements ActionListener{
         this.ventana.setVisible(true);
         //cliente.printCat();
     }
+    /**
+     * Manejador de acciones en consola
+     * @param ae 
+     */
     
     @Override
     public void actionPerformed(ActionEvent ae) {
