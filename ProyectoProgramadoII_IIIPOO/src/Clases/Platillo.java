@@ -23,11 +23,22 @@ public class Platillo implements Serializable{      //Cada clase que quiere pasa
     protected TipoPlatillo tipoPlatillo;                      //comente estos dos porque ambos deben ser serializables
     
     public String resulSocket;                                  //agregue esto para ver si funcionaba el socket
-
+    
+    
     public Platillo(String nombre, double precio,int calorias){
         this.nombre = nombre;
         this.precio = precio;
         this.calorias = calorias;
+        
+    }
+
+    public Platillo(String nombre, double precio,int calorias,int cantPedidos,String descripcion,String codClave){
+        this.nombre = nombre;
+        this.precio = precio;
+        this.calorias = calorias;
+        this.cantPedidos = cantPedidos;
+        this.codClave = codClave;
+        this.descripcion = descripcion;
         
         
     }

@@ -46,7 +46,7 @@ public class Writer {
 		rootElement.appendChild(platillo);
 
 		// shorten way
-		platillo.setAttribute("id", "BEB-"+Integer.toString(cont));//aqui falta cambiarlo para que sea el tipo de platillo correcto, 
+		//platillo.setAttribute("id", "BEB-"+Integer.toString(cont));//aqui falta cambiarlo para que sea el tipo de platillo correcto, 
                                                                             //pero hasta que hagan la clase TipoPlatillo
                  
                 Element nombre = doc.createElement("nombre");
