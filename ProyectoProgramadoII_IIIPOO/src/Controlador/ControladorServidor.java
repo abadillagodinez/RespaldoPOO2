@@ -24,6 +24,7 @@ public class ControladorServidor implements ActionListener{
     private final String admin = "admin";
     private final String contrasegna = "admin";
     private VentanaPrincipalServidor ventana;
+    private VentanaCatalogo ventCatalogo;
     private VentanaLogin login;
     private SocketServidor servidor;
     private ArrayList<Platillo> platillos = new ArrayList<Platillo>();
@@ -43,21 +44,11 @@ public class ControladorServidor implements ActionListener{
         switch(e.getActionCommand()){
             case "Login":
                 if(login.txfUsername.getText().equals(admin) && login.pwfContrasegna.getText().equals(contrasegna)){
-                    ventana = new VentanaPrincipalServidor();
-                    ventana.btnCatalogo.addActionListener((ActionListener) this);
-                    ventana.btnHistorial.addActionListener((ActionListener) this);
-                    ventana.btnStats.addActionListener((ActionListener) this);
-                    ventana.btnTop0.addActionListener((ActionListener) this);
-                    ventana.btnTop10.addActionListener((ActionListener) this);
-                    ventana.btnValorExpress.addActionListener((ActionListener) this);
-                    ventana.btnValorPaquete.addActionListener((ActionListener) this);
-                    ventana.setVisible(true);
-                    login.dispose();
+                    caseLogin();
                     break;
                 }
             case "Catálogo":
-                VentanaCatalogo venCatalogo = new VentanaCatalogo(platillos);
-                venCatalogo.setVisible(true);
+                caseCatalogo();
                 break;
             case "Top 10":
                 ArrayList<Platillo> top10=new ArrayList<>();
@@ -110,6 +101,35 @@ public class ControladorServidor implements ActionListener{
                 break;
                 
         }        
+    }
+    
+    /**
+     * metodo en caso de que el action event sea login
+     */
+    private void caseLogin(){
+        ventana = new VentanaPrincipalServidor();
+        ventana.btnCatalogo.addActionListener((ActionListener) this);
+        ventana.btnHistorial.addActionListener((ActionListener) this);
+        ventana.btnStats.addActionListener((ActionListener) this);
+        ventana.btnTop0.addActionListener((ActionListener) this);
+        ventana.btnTop10.addActionListener((ActionListener) this);
+        ventana.btnValorExpress.addActionListener((ActionListener) this);
+        ventana.btnValorPaquete.addActionListener((ActionListener) this);
+        ventana.setVisible(true);
+        login.dispose();
+    }
+    
+    private void caseCatalogo(){
+        ventCatalogo = new VentanaCatalogo(platillos);
+        ventCatalogo.btnAnadir.addActionListener(this);
+        ventCatalogo.btnEliminar.addActionListener(this);
+        ventCatalogo.btnModificar.addActionListener(this);
+        ventCatalogo.btnVolver.addActionListener(this);
+        ventCatalogo.cbxFiltro.addActionListener(this);
+        ventCatalogo.lstComidas.addActionListener(this);
+        ventCatalogo.radioBtnBebida.addActionListener(this);
+        ventCatalogo.radioBtnNoBebida.addActionListener(this);
+        ventCatalogo.setVisible(true);
     }
     
     public VentanaPrincipalServidor getPrincipal(){

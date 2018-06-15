@@ -8,14 +8,10 @@ package Clases;
 import java.net.*;
 import java.io.*;
 import Controlador.ControladorServidor;
-<<<<<<< HEAD
 import Controlador.Reader;
-=======
-import Controlador.reader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 //me estaba tirando errores
->>>>>>> master
 
 
 	 

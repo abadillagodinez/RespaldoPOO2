@@ -78,7 +78,7 @@ public class CreadorBebidas extends javax.swing.JFrame {
             }
         });
 
-        btnCrear.setText("Crear");
+        btnCrear.setText("Crear bebida");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);
@@ -205,6 +205,7 @@ public class CreadorBebidas extends javax.swing.JFrame {
             platillo.setKilokcalPorGramo(Double.valueOf(txtkcalMl.getText()));
             platillo.setGramosPorPorcion(Double.valueOf(txtMlporcion.getText()));
             platillo.setImagen(bytesIMG);
+            setVoid();
             JOptionPane.showMessageDialog(this, "Plato Creado Correctamente");
             platoValido=true;
         }else{
@@ -230,6 +231,17 @@ public class CreadorBebidas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txfNombreActionPerformed
 
+    
+    
+    public void setVoid(){
+        txfCaloriasPorcion.setText("");
+        txfDescripcion.setText("");
+        txfNombre.setText("");
+        txfPrecio.setText("");
+        txtTipoPorcion.setText("");
+        txtMlporcion.setText("");
+        txtkcalMl.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnadirIMG;

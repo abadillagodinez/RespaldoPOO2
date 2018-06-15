@@ -240,14 +240,14 @@ public class VentanaCatalogo extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAnadir;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnVolver;
-    private javax.swing.JComboBox<String> cbxFiltro;
-    private java.awt.List lstComidas;
-    private javax.swing.JRadioButton radioBtnBebida;
-    private javax.swing.JRadioButton radioBtnNoBebida;
+    public javax.swing.JButton btnAnadir;
+    public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnModificar;
+    public javax.swing.JButton btnVolver;
+    public javax.swing.JComboBox<String> cbxFiltro;
+    public java.awt.List lstComidas;
+    public javax.swing.JRadioButton radioBtnBebida;
+    public javax.swing.JRadioButton radioBtnNoBebida;
     // End of variables declaration//GEN-END:variables
 
 }

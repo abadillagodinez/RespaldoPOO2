@@ -11,6 +11,7 @@ import Vista.Cliente.VentanaExpress;
 import Vista.Cliente.VentanaLLevar;
 import Vista.Cliente.VentanaPrincipalCliente;
 import Vista.Cliente.VentanaVerCarrito;
+import Vista.Servidor.VentanaCatalogo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,8 +24,8 @@ import javax.swing.JOptionPane;
 public class ControladorCliente implements ActionListener{
     private VentanaPrincipalCliente ventana;
     private SocketCliente cliente;
-    private ArrayList<Platillo> platillos;
-    private ArrayList<Platillo> carrito; //posive lista para el carrito
+    private ArrayList<Platillo> platillos = new ArrayList<Platillo>();
+    private ArrayList<Platillo> carrito = new ArrayList<Platillo>(); //posive lista para el carrito
     
     public ControladorCliente(VentanaPrincipalCliente ventana){
         this.ventana = ventana;
