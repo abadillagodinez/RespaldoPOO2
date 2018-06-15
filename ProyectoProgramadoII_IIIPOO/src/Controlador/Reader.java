@@ -23,7 +23,7 @@ public class Reader {
        try {
          
          Platillo platillo = new Platillo();
-         File inputFile = new File("C:\\users\\erick\\Desktop\\file.xml");//archivo de donde se va a leer el xml
+         File inputFile = new File("platillos.xml");//archivo de donde se va a leer el xml
          DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
          DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
          Document doc = dBuilder.parse(inputFile);

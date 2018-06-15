@@ -46,6 +46,8 @@ public class ControladorServidor implements ActionListener{
                 if(login.txfUsername.getText().equals(admin) && login.pwfContrasegna.getText().equals(contrasegna)){
                     caseLogin();
                     break;
+                }else{
+                    JOptionPane.showMessageDialog(ventana ,"Usuario y/o contraseña incorrecta",  "Error" , 1);
                 }
             case "Catálogo":
                 caseCatalogo();
