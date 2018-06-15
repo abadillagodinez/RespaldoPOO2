@@ -6,6 +6,7 @@
 package Controlador;
 import Clases.Platillo;
 import Clases.SocketServidor;
+import Clases.TipoPlatillo;
 import Vista.Servidor.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,8 @@ public class ControladorServidor implements ActionListener{
     private final String contrasegna = "admin";
     private VentanaPrincipalServidor ventana;
     private VentanaCatalogo ventCatalogo;
+    private CreadorBebidas creaBebidas;
+    private CreadorNoBebidas creaNoBebidas;
     private VentanaLogin login;
     public static SocketServidor servidor;
     private ArrayList<Platillo> platillos = new ArrayList<Platillo>();
@@ -115,6 +118,41 @@ public class ControladorServidor implements ActionListener{
                 ventCatalogo.radioBtnBebida.setSelected(true);
                 ventCatalogo.radioBtnNoBebida.setSelected(false);
                 break;
+            case "Añadir":
+                if(ventCatalogo.radioBtnBebida.isSelected()){
+                    caseCreaBebida();
+                    break;
+                }
+                else{
+                    caseCreaNoBebida();
+                    break;
+                }
+            case "Crear bebida":
+                boolean esNuevo=true;
+                Platillo platillo;
+                for(int i = 0; i < platillos.size(); i++){
+                    Platillo s = platillos.get(i);
+                    if(creaBebidas.txfNombre.getText().equals(s.getNombre())){
+                        esNuevo=false;
+                        break;
+                    }
+                }
+                    if(esNuevo){
+                        platillo= new Platillo(creaBebidas.txfNombre.getText(), creaBebidas.txfDescripcion.getText(), 
+                                Double.parseDouble(creaBebidas.txfPrecio.getText()), creaBebidas.txtTipoPorcion.getText(),
+                                "Bebida"+creaBebidas.txfNombre.getText(), Integer.parseInt(creaBebidas.txfCaloriasPorcion.getText()),
+                    Double.valueOf(creaBebidas.txtkcalMl.getText()), Double.valueOf(creaBebidas.txtMlporcion.getText()), TipoPlatillo.BEB);
+                    if(creaBebidas.bytesIMG!=null)
+                        platillo.setImagen(creaBebidas.bytesIMG);
+                    creaBebidas.setVoid();
+                    //platillo.setImagen(bytesIMG);
+                    //creaBebidas.setVoid();
+                        JOptionPane.showMessageDialog(creaBebidas, "Plato Creado Correctamente");
+                        creaBebidas.platoValido=true;
+                    }else{
+                       JOptionPane.showMessageDialog(this, "Plato Repetido, Intente de nuevo"); 
+                    }
+            break;
                 
         }        
     }
@@ -135,6 +173,9 @@ public class ControladorServidor implements ActionListener{
         login.dispose();
     }
     
+    /**
+     * metodo para los caso de catalogo
+     */
     private void caseCatalogo(){
         ventCatalogo = new VentanaCatalogo(platillos);
         ventCatalogo.btnAnadir.addActionListener(this);
@@ -146,6 +187,41 @@ public class ControladorServidor implements ActionListener{
         ventCatalogo.radioBtnBebida.addActionListener(this);
         ventCatalogo.radioBtnNoBebida.addActionListener(this);
         ventCatalogo.setVisible(true);
+    }
+    
+    private void caseCreaBebida(){
+        ArrayList<String> nombres = new ArrayList<String>();
+        for(int i = 0; i < platillos.size(); i++){
+            nombres.add(platillos.get(i).getNombre());
+        }
+        creaBebidas = new CreadorBebidas(nombres, ventCatalogo);
+        creaBebidas.btnAnadirIMG.addActionListener(this);
+        creaBebidas.btnCrear.addActionListener(this);/*
+        creaBebidas.txfCaloriasPorcion.addActionListener(this);
+        creaBebidas.txfDescripcion.addActionListener(this);
+        creaBebidas.txfNombre.addActionListener(this);
+        creaBebidas.txfPrecio.addActionListener(this);
+        creaBebidas.txtMlporcion.addActionListener(this);
+        creaBebidas.txtTipoPorcion.add*/
+        creaBebidas.setVisible(true);
+    }
+    
+    private void caseCreaNoBebida(){
+        ArrayList<String> nombres = new ArrayList<String>();
+        for(int i = 0; i < platillos.size(); i++){
+            nombres.add(platillos.get(i).getNombre());
+        }
+        creaNoBebidas = new CreadorNoBebidas(nombres);
+        creaNoBebidas.btnAnadirIMG.addActionListener(this);
+        creaNoBebidas.btnCrear.addActionListener(this);
+        /*
+        creaBebidas.txfCaloriasPorcion.addActionListener(this);
+        creaBebidas.txfDescripcion.addActionListener(this);
+        creaBebidas.txfNombre.addActionListener(this);
+        creaBebidas.txfPrecio.addActionListener(this);
+        creaBebidas.txtMlporcion.addActionListener(this);
+        creaBebidas.txtTipoPorcion.add*/
+        creaBebidas.setVisible(true);
     }
     
     public VentanaPrincipalServidor getPrincipal(){

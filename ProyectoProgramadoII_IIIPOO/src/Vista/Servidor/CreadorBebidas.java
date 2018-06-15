@@ -23,7 +23,7 @@ public class CreadorBebidas extends javax.swing.JFrame {
     private VentanaCatalogo padre;
     public Platillo platillo;
     private File Archivo;
-    private byte[] bytesIMG;
+    public byte[] bytesIMG;
     private imgHandler gestion=new imgHandler();
     private javax.swing.JFileChooser selected = new javax.swing.JFileChooser();
     private ArrayList<String> platillos;
@@ -54,7 +54,6 @@ public class CreadorBebidas extends javax.swing.JFrame {
         txfCaloriasPorcion = new javax.swing.JTextField();
         txfPrecio = new javax.swing.JTextField();
         btnCrear = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
         btnAnadirIMG = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -86,13 +85,6 @@ public class CreadorBebidas extends javax.swing.JFrame {
             }
         });
 
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-
         btnAnadirIMG.setText("Añadir Imagen");
         btnAnadirIMG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,22 +113,16 @@ public class CreadorBebidas extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAnadirIMG)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(txfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(txtTipoPorcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(txfCaloriasPorcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(txfPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(txtMlporcion)
-                            .addComponent(txtkcalMl))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(txfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(txtTipoPorcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(txfCaloriasPorcion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(txfPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(txtMlporcion)
+                    .addComponent(txtkcalMl)
+                    .addComponent(btnAnadirIMG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,18 +158,12 @@ public class CreadorBebidas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrear)
-                    .addComponent(btnVolver)
                     .addComponent(btnAnadirIMG))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        padre.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         boolean esNuevo=true;
@@ -238,9 +218,8 @@ public class CreadorBebidas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAnadirIMG;
-    private javax.swing.JButton btnCrear;
-    private javax.swing.JButton btnVolver;
+    public javax.swing.JButton btnAnadirIMG;
+    public javax.swing.JButton btnCrear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -248,13 +227,13 @@ public class CreadorBebidas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField txfCaloriasPorcion;
-    private javax.swing.JTextField txfDescripcion;
-    private javax.swing.JTextField txfNombre;
-    private javax.swing.JTextField txfPrecio;
-    private javax.swing.JTextField txtMlporcion;
-    private javax.swing.JTextField txtTipoPorcion;
-    private javax.swing.JTextField txtkcalMl;
+    public javax.swing.JTextField txfCaloriasPorcion;
+    public javax.swing.JTextField txfDescripcion;
+    public javax.swing.JTextField txfNombre;
+    public javax.swing.JTextField txfPrecio;
+    public javax.swing.JTextField txtMlporcion;
+    public javax.swing.JTextField txtTipoPorcion;
+    public javax.swing.JTextField txtkcalMl;
     // End of variables declaration//GEN-END:variables
 
 
