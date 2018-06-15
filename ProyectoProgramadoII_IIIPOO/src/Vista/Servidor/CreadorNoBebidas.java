@@ -6,6 +6,7 @@
 package Vista.Servidor;
 
 import Clases.Platillo;
+import Clases.TipoPlatillo;
 import Clases.imgHandler;
 import java.io.File;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
 
     public Platillo platillo;
     private File Archivo;
-    private byte[] bytesIMG;
+    public byte[] bytesIMG=null;
     private imgHandler gestion=new imgHandler();
     private javax.swing.JFileChooser selected = new javax.swing.JFileChooser();
     private ArrayList<String> platillos;
@@ -236,28 +237,30 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
         }
         if(esNuevo){
             platillo= new Platillo();
+            TipoPlatillo hh=null;
             if(radioEntrada.isSelected()){
                 platillo.setCodClave("ETR"+platillo.getNombre());
+                hh=TipoPlatillo.ETR;
             }else if(radioPlatoF.isSelected()){
                 platillo.setCodClave("PRN"+platillo.getNombre());
+                hh=TipoPlatillo.PRN;
             }else if(radioPoste.isSelected()){
                 platillo.setCodClave("PTR"+platillo.getNombre());
+                hh=TipoPlatillo.PTR;
             }else{
                 esNuevo=false;
             }
             if(esNuevo){
-                platillo.setCalorias(Integer.parseInt(txfCaloriasPorcion.getText()));
-                platillo.setDescripcion(txfDescripcion.getText());
-                platillo.setNombre(txfNombre.getText());
-                platillo.setPrecio(Double.parseDouble(txfPrecio.getText()));
-                platillo.setTipoPorcion(txtTipoPorcion.getText());
-                platillo.setHabilitado(true);
-                platillo.setCantPedidos(0);
-                platillo.setGramosPorPorcion(Double.valueOf(txtGramoporcion.getText()));
-                platillo.setKilokcalPorGramo(Double.valueOf(txtkcalGrano.getText()));
-                platillo.setImagen(bytesIMG);
-                JOptionPane.showMessageDialog(this, "Plato Creado Correctamente");
+                platillo= new Platillo(txfNombre.getText(), txfDescripcion.getText(), Double.parseDouble(txfPrecio.getText()),
+                    txtTipoPorcion.getText(), "Bebida"+txfNombre.getText(), Integer.parseInt(txfCaloriasPorcion.getText()),
+                    Double.valueOf(txtkcalGrano.getText()), Double.valueOf(txtGramoporcion.getText()), hh);
+                if(bytesIMG!=null){
+                   platillo.setImagen(bytesIMG); 
+                }
+                
+                setVoid();
                 platoValido=true;
+                JOptionPane.showMessageDialog(this, "Plato Creado Correctamente");
             }else{
                 JOptionPane.showMessageDialog(this, "Seleccione una categoria de plato");
             }
@@ -267,6 +270,15 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCrearActionPerformed
 
+    public void setVoid(){
+        txfCaloriasPorcion.setText("");
+        txfDescripcion.setText("");
+        txfNombre.setText("");
+        txfPrecio.setText("");
+        txtTipoPorcion.setText("");
+        txtGramoporcion.setText("");
+        txtkcalGrano.setText("");
+    }
     
     private void btnAnadirIMGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirIMGActionPerformed
         if(selected.showDialog(this, "Abrir Archivo")== JFileChooser.APPROVE_OPTION){
