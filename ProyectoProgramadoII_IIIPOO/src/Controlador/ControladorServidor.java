@@ -150,9 +150,36 @@ public class ControladorServidor implements ActionListener{
                         JOptionPane.showMessageDialog(creaBebidas, "Plato Creado Correctamente");
                         creaBebidas.platoValido=true;
                     }else{
-                       JOptionPane.showMessageDialog(this, "Plato Repetido, Intente de nuevo"); 
+                       JOptionPane.showMessageDialog(creaBebidas, "Plato Repetido, Intente de nuevo"); 
                     }
             break;
+            case "Crear No Bebida":
+                boolean esNuevo=true;
+                Platillo platillo;
+                for(int i = 0; i < platillos.size(); i++){
+                    Platillo s = platillos.get(i);
+                    if(creaBebidas.txfNombre.getText().equals(s.getNombre())){
+                        esNuevo=false;
+                        break;
+                    }
+                }
+                    if(esNuevo){
+                        platillo= new Platillo(creaBebidas.txfNombre.getText(), creaBebidas.txfDescripcion.getText(), 
+                                Double.parseDouble(creaBebidas.txfPrecio.getText()), creaBebidas.txtTipoPorcion.getText(),
+                                "Bebida"+creaBebidas.txfNombre.getText(), Integer.parseInt(creaBebidas.txfCaloriasPorcion.getText()),
+                    Double.valueOf(creaBebidas.txtkcalMl.getText()), Double.valueOf(creaBebidas.txtMlporcion.getText()), TipoPlatillo.BEB);
+                    if(creaBebidas.bytesIMG!=null)
+                        platillo.setImagen(creaBebidas.bytesIMG);
+                    creaBebidas.setVoid();
+                    //platillo.setImagen(bytesIMG);
+                    //creaBebidas.setVoid();
+                        JOptionPane.showMessageDialog(creaBebidas, "Plato Creado Correctamente");
+                        creaBebidas.platoValido=true;
+                    }else{
+                       JOptionPane.showMessageDialog(creaBebidas, "Plato Repetido, Intente de nuevo"); 
+                    }
+            break;
+                
                 
         }        
     }

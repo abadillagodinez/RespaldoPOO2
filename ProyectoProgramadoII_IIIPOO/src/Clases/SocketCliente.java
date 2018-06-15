@@ -87,7 +87,7 @@ public class SocketCliente extends Thread{
         Platillo[] catalogo = nuevaConexion.recibirCatalogo();
         System.out.println("ya asigno a catalogo lo que mando el server");
         Platillo[] listaPlatillos = new Platillo[111];
-        Platillo p1 = new Platillo("pollo",1000,200);
+        /*Platillo p1 = new Platillo("pollo",1000,200);
         Platillo p2 = new Platillo("Bistec",1500,400);
         Platillo p3 = new Platillo("ensalada",1800,75);
         Platillo p4 = new Platillo("Crema de Hongos",2300,300);
@@ -121,7 +121,7 @@ public class SocketCliente extends Thread{
         Pedido pedidoTotal= new Pedido("Marco","Moravia","direccion",1300,100,"EXPRESS",ordenes);   //crea un pedido general
         
         nuevaConexion.generarOrden(pedidoTotal);
-        System.out.println("ya paso de generarOrden");
+        System.out.println("ya paso de generarOrden");*/
         
         
     }
