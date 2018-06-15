@@ -91,6 +91,11 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
         });
 
         btnTop0.setText("Top 0");
+        btnTop0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTop0ActionPerformed(evt);
+            }
+        });
 
         btnHistorial.setText("Historial");
 
@@ -183,6 +188,10 @@ public class VentanaPrincipalServidor extends javax.swing.JFrame {
     private void btnStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnStatsActionPerformed
+
+    private void btnTop0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTop0ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTop0ActionPerformed
 
     
 

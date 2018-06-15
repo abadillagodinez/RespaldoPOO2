@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 public class ControladorServidor implements ActionListener{
     private VentanaPrincipalServidor ventana;
     private SocketServidor servidor;
-    private ArrayList<Platillo> platillos;
+    private ArrayList<Platillo> platillos = new ArrayList<Platillo>();
     
     public ControladorServidor(VentanaPrincipalServidor ventana) throws IOException{
         this.ventana = ventana;
@@ -47,21 +47,26 @@ public class ControladorServidor implements ActionListener{
                 break;
             case "Top 10":
                 ArrayList<Platillo> top10=new ArrayList<>();
-                for(Platillo platillo:platillos){
-                    if(top10.size()<10){
-                        top10.add(platillo);
-                    }else{
-                        for(Platillo platillo2:top10){
-                            if(platillo.getCantPedidos()>platillo2.getCantPedidos()){
-                                top10.remove(platillo2);
-                                top10.add(platillo);
-                                break;
+                if(platillos.size() > 0){
+                    for(Platillo platillo:platillos){
+                        if(top10.size()<10){
+                            top10.add(platillo);
+                        }else{
+                            for(Platillo platillo2:top10){
+                                if(platillo.getCantPedidos()>platillo2.getCantPedidos()){
+                                    top10.remove(platillo2);
+                                    top10.add(platillo);
+                                    break;
+                                }
                             }
+                            VentanaTop10 nuevaTop10= new VentanaTop10(top10);
+                            nuevaTop10.setVisible(true);
                         }
                     }
                 }
-                VentanaTop10 nuevaTop10= new VentanaTop10(top10);
-                nuevaTop10.setVisible(true);
+                else{
+                    JOptionPane.showMessageDialog(ventana ,"La lista de platillos se encuentra vacia",  "Error" , 1);
+                }
                 break;
             case "Top 0":
                 ArrayList<Platillo> top0=new ArrayList<>();

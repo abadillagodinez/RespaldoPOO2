@@ -184,6 +184,16 @@ public class Platillo implements Serializable{      //Cada clase que quiere pasa
         return s;
     }
 
+    public String toList(){
+        String s = "";
+        s += nombre + "\t";
+        if(tipoPlatillo.equals(TipoPlatillo.BEB)){
+            s+= String.valueOf(gramosPorPorcion)+"\t"; 
+        }else{
+            s+= String.valueOf(gramosPorPorcion)+"\t";
+        }
+        return s;
+    }
 
 
 
