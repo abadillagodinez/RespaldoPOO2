@@ -126,7 +126,7 @@ public class Writer {
 
     public static void main(String argv[]) {
         Writer xml = new Writer();
-        File nuevo = new File("C:\\users\\erick\\Desktop\\maruchan.png");
+        File nuevo = new File("/home/retr0/Documentos/Wallpaper/poryecto arqui/descarga.png");
         imgHandler imagen = new imgHandler();
         
         Platillo platillito = new Platillo();

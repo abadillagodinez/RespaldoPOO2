@@ -24,13 +24,15 @@ public class VentanaCatalogo extends javax.swing.JFrame {
      */
     public VentanaCatalogo(ArrayList<Platillo> platillos) {
         this.platillos=platillos;
+        
         initComponents();
         if(platillos.isEmpty()){
             lstComidas.add("No existen platillos");
         }else{
             for (Platillo platillosSelec1 : platillos) {
-            lstComidas.add(platillosSelec1.toString());
-        }
+                lstComidas.add(platillosSelec1.toString());
+            }
+        
         }
     }
 
@@ -207,11 +209,9 @@ public class VentanaCatalogo extends javax.swing.JFrame {
             nombres.add(p.getNombre());
         });
         if(radioBtnBebida.isSelected()){
-            CreadorBebidas nuevo= new CreadorBebidas(nombres);
+            CreadorBebidas nuevo= new CreadorBebidas(nombres, this);
             nuevo.setVisible(true);
-            while(nuevo.isVisible()){
-                //esperar
-            }
+            this.setVisible(false);
             if(nuevo.platoValido){
                 platillos.add(nuevo.getPlatillo());
             }
@@ -240,13 +240,14 @@ public class VentanaCatalogo extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAnadir;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnVolver;
-    private javax.swing.JComboBox<String> cbxFiltro;
-    private java.awt.List lstComidas;
-    private javax.swing.JRadioButton radioBtnBebida;
-    private javax.swing.JRadioButton radioBtnNoBebida;
+    public javax.swing.JButton btnAnadir;
+    public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnModificar;
+    public javax.swing.JButton btnVolver;
+    public javax.swing.JComboBox<String> cbxFiltro;
+    public java.awt.List lstComidas;
+    public javax.swing.JRadioButton radioBtnBebida;
+    public javax.swing.JRadioButton radioBtnNoBebida;
     // End of variables declaration//GEN-END:variables
+
 }

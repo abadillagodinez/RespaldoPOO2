@@ -6,14 +6,23 @@ import static Clases.FuncionalidadesServer.listaPlatillos;
 import java.net.*;
 
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
 public class SocketCliente extends Thread{
+    private static SocketCliente sc;
     public static boolean state = true;
     public static Socket socket;
     final String HOST = "localhost";
 
+    public static SocketCliente getInstance(){
+        if(sc == null){
+            sc = new SocketCliente();
+        }
+        return sc;
+    }
     
     public void runClient() throws IOException, ClassNotFoundException{
         
@@ -47,8 +56,17 @@ public class SocketCliente extends Thread{
         socket.close();
     }
 
-        
-
+    @Override
+    public void run(){
+        try {
+            runClient();
+        } catch (IOException ex) {
+            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public static void main(String args[])throws IOException , ClassNotFoundException,UnknownHostException {
         SocketCliente nuevaConexion = new SocketCliente();
         Platillo[] catalogo = nuevaConexion.recibirCatalogo();
