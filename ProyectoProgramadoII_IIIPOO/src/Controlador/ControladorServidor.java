@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controlador;
+import Clases.Historial;
 import Clases.Platillo;
 import Clases.SocketServidor;
 import Clases.TipoPlatillo;
@@ -93,16 +94,21 @@ public class ControladorServidor implements ActionListener{
                 nuevaTop0.setVisible(true);
                 break;
             case "Historial":
-                VentanaHistorial nuevaHis = new VentanaHistorial();
+                VentanaHistorial nuevaHis = new VentanaHistorial();  
+                String s="";
+                Historial h=Historial.getInstance();
+                for(String p:h.cambios){
+                    nuevaHis.getlist().add(p);
+                }
                 nuevaHis.setVisible(true);
                 break;
             case "Valor paquete":
                 //cambia el valor del paquete
-                System.out.println("digamos que lo cambio");
+                //System.out.println("digamos que lo cambio");
                 break;
             case "Valor express":
                 //cambia el valor del express
-                System.out.println("digamos que lo cambioX2");
+                //System.out.println("digamos que lo cambioX2");
                 break;
             case "Estadísticas":
                 VentanaEstadisticas nuevaEstadisticas = new VentanaEstadisticas();
