@@ -21,6 +21,7 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import Clases.Platillo;
+import Clases.TipoPlatillo;
 import Clases.imgHandler;
 public class Writer {
     
@@ -98,6 +99,39 @@ public class Writer {
 		imagen.appendChild(doc.createTextNode(Arrays.toString(platillos[cont].getImagen())));
 		platillo.appendChild(imagen);
                 
+                    switch (platillos[cont].getTipoPlatillo()) {
+                        case BEB:
+                            {
+                                Element tipoPlatillo = doc.createElement("tipoPlatillo");
+                                tipoPlatillo.appendChild(doc.createTextNode("BEB"));
+                                platillo.appendChild(tipoPlatillo);
+                                break;
+                            }
+                        case ETR:
+                            {
+                                Element tipoPlatillo = doc.createElement("tipoPlatillo");
+                                tipoPlatillo.appendChild(doc.createTextNode("ETR"));
+                                platillo.appendChild(tipoPlatillo);
+                                break;
+                            }
+                        case PRN:
+                            {
+                                Element tipoPlatillo = doc.createElement("tipoPlatillo");
+                                tipoPlatillo.appendChild(doc.createTextNode("PRN"));
+                                platillo.appendChild(tipoPlatillo);
+                                break;
+                            }
+                        case PTR:
+                            {
+                                Element tipoPlatillo = doc.createElement("tipoPlatillo");
+                                tipoPlatillo.appendChild(doc.createTextNode("PTR"));
+                                platillo.appendChild(tipoPlatillo);
+                                break;
+                            }
+                        default:
+                            break;
+                    }
+                
                 
                 
                 
@@ -142,6 +176,7 @@ public class Writer {
         platillito.setKilokcalPorGramo(100);
         platillito.setGramosPorPorcion(200);
         platillito.setImagen(imagen.AbrirIMG(nuevo));
+        platillito.setTipoPlatillo(TipoPlatillo.PTR);
         Platillo[] lista = new Platillo[2];
         lista[0]= platillito;
         Platillo platillito2 = new Platillo();
@@ -157,6 +192,7 @@ public class Writer {
         platillito2.setKilokcalPorGramo(150);
         platillito2.setGramosPorPorcion(250);
         platillito2.setImagen(imagen.AbrirIMG(nuevo));
+        platillito2.setTipoPlatillo(TipoPlatillo.PRN);
         lista[1] = platillito2;
         //System.out.println(lista[0].getNombre());
         xml.Writer(lista);
