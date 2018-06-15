@@ -16,13 +16,13 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
+import java.util.Arrays;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import Clases.Platillo;
-
-public class writer {
+import Clases.imgHandler;
+public class Writer {
     
     public void Writer(Platillo[] platillos){
         try {
@@ -87,13 +87,16 @@ public class writer {
 		platillo.appendChild(calorias);
                 
                 Element kilokcalPorGramo = doc.createElement("kilokcalPorGramo");
-		kilokcalPorGramo.appendChild(doc.createTextNode(Integer.toString(platillos[cont].getCalorias())));
+		kilokcalPorGramo.appendChild(doc.createTextNode(Double.toString(platillos[cont].getKilokcalPorGramo())));
 		platillo.appendChild(kilokcalPorGramo);
                 
                 Element gramosPorPorcion = doc.createElement("gramosPorPorcion");
-		gramosPorPorcion.appendChild(doc.createTextNode(Integer.toString(platillos[cont].getCalorias())));
+		gramosPorPorcion.appendChild(doc.createTextNode(Double.toString(platillos[cont].getGramosPorPorcion())));
 		platillo.appendChild(gramosPorPorcion);
                 
+                Element imagen = doc.createElement("imagen");
+		imagen.appendChild(doc.createTextNode(Arrays.toString(platillos[cont].getImagen())));
+		platillo.appendChild(imagen);
                 
                 
                 
@@ -122,7 +125,10 @@ public class writer {
     }
 
     public static void main(String argv[]) {
-        writer xml = new writer();
+        Writer xml = new Writer();
+        File nuevo = new File("C:\\users\\erick\\Desktop\\maruchan.png");
+        imgHandler imagen = new imgHandler();
+        
         Platillo platillito = new Platillo();
         platillito.setNombre("pizzaaa");
         platillito.setPrecio(1000);
@@ -135,6 +141,7 @@ public class writer {
         platillito.setCalorias(100);
         platillito.setKilokcalPorGramo(100);
         platillito.setGramosPorPorcion(200);
+        platillito.setImagen(imagen.AbrirIMG(nuevo));
         Platillo[] lista = new Platillo[2];
         lista[0]= platillito;
         Platillo platillito2 = new Platillo();
@@ -149,6 +156,7 @@ public class writer {
         platillito2.setCalorias(200);
         platillito2.setKilokcalPorGramo(150);
         platillito2.setGramosPorPorcion(250);
+        platillito2.setImagen(imagen.AbrirIMG(nuevo));
         lista[1] = platillito2;
         //System.out.println(lista[0].getNombre());
         xml.Writer(lista);
@@ -157,71 +165,3 @@ public class writer {
     }
 }
 
-//	  try {
-//
-//		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-//		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-//                
-//		// root elements
-//		Document doc = docBuilder.newDocument();
-//		Element rootElement = doc.createElement("Catalogo");
-//		doc.appendChild(rootElement);
-//
-//		// staff elements
-//		
-//
-//		// firstname elements
-//                int cont = 1;
-//                while(cont < 3){
-//                    
-//                Element platillo = doc.createElement("Platillo");
-//		rootElement.appendChild(platillo);
-//
-//		// shorten way
-//		platillo.setAttribute("id", "BEB-"+Integer.toString(cont));
-//                 
-//                Element nombre = doc.createElement("nombre");
-//		nombre.appendChild(doc.createTextNode("pizza"));
-//		platillo.appendChild(nombre);
-//                
-//		Element descripcion = doc.createElement("descripcion");
-//		descripcion.appendChild(doc.createTextNode("sabor pepperoni,muy rica"));
-//		platillo.appendChild(descripcion);
-//
-//                
-//		Element precio = doc.createElement("precio");
-//		precio.appendChild(doc.createTextNode("10000"));
-//		platillo.appendChild(precio);
-//                
-//                Element tipoPorcion = doc.createElement("tipoPorcion");
-//		tipoPorcion.appendChild(doc.createTextNode("taza"));
-//		platillo.appendChild(tipoPorcion);
-//                
-//                cont++;
-//                }
-//                
-//                
-//                
-//                
-//
-//		// write the content into xml file
-//		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-//		Transformer transformer = transformerFactory.newTransformer();
-//                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-//		DOMSource source = new DOMSource(doc);
-//		StreamResult result = new StreamResult(new File("C:\\users\\erick\\Desktop\\file.xml"));
-//
-//		// Output to console for testing
-//		// StreamResult result = new StreamResult(System.out);
-//
-//		transformer.transform(source, result);
-//
-//		System.out.println("File saved!");
-//
-//	  } catch (ParserConfigurationException pce) {
-//		pce.printStackTrace();
-//	  } catch (TransformerException tfe) {
-//		tfe.printStackTrace();
-//	  }
-//	}
-//}

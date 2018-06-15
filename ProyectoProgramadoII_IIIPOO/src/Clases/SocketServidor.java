@@ -8,7 +8,7 @@ package Clases;
 import java.net.*;
 import java.io.*;
 import Controlador.ControladorServidor;
-import Controlador.reader;
+import Controlador.Reader;
 
 
 	 
@@ -29,7 +29,7 @@ public class SocketServidor {
         System.out.println("Listo para conexiones...");
         socket = serverSocket.accept();//acepta conexion
         ObjectOutputStream objectOutputStream1 = new ObjectOutputStream(socket.getOutputStream());
-        reader xml = new reader();
+        Reader xml = new Reader();
         Platillo[] lplatillo;
         lplatillo = xml.XMLReader();//lee el archivo XML
         objectOutputStream1.writeObject(lplatillo);//aqui manda el catalogo por el socket
