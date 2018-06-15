@@ -26,7 +26,7 @@ public class ControladorServidor implements ActionListener{
     private VentanaPrincipalServidor ventana;
     private VentanaCatalogo ventCatalogo;
     private VentanaLogin login;
-    private SocketServidor servidor;
+    public static SocketServidor servidor;
     private ArrayList<Platillo> platillos = new ArrayList<Platillo>();
     
     public ControladorServidor() throws IOException{
@@ -39,6 +39,7 @@ public class ControladorServidor implements ActionListener{
         login.btnLogin.addActionListener(this);
         login.setVisible(true);
     }
+    
     
     public void actionPerformed(ActionEvent e){
         switch(e.getActionCommand()){

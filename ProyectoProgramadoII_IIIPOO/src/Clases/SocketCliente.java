@@ -16,6 +16,7 @@ public class SocketCliente extends Thread{
     public static boolean state = true;
     public static Socket socket;
     final String HOST = "localhost";
+    public Platillo[] catalogo; 
 
     public static SocketCliente getInstance(){
         if(sc == null){
@@ -24,15 +25,30 @@ public class SocketCliente extends Thread{
         return sc;
     }
     
+    private SocketCliente(){
+        ConectarCliente();
+    }
+    
     public void runClient() throws IOException, ClassNotFoundException{
         
         while(state){
-            Platillo[] catalogo = recibirCatalogo();
+            catalogo = recibirCatalogo();
+            System.out.println("recibio el cat");
         }
     }
     
-    public void ConectarCliente() throws IOException , ClassNotFoundException,UnknownHostException {
-       socket = new Socket(HOST,SocketServidor.PORT);//conecta al mismo puerto del servidor
+    public void printCat(){
+        for(int i = 0; i < catalogo.length; i++){
+            Platillo actual = catalogo[i];
+            System.out.println(actual.nombre);
+        }
+    }
+    public void ConectarCliente(){
+        try {
+            socket = new Socket(HOST,SocketServidor.PORT);//conecta al mismo puerto del servidor
+        } catch (IOException ex) {
+            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
     
@@ -53,7 +69,7 @@ public class SocketCliente extends Thread{
         System.out.println("se envio el objeto");
         //Pedido resultado = (Pedido)objectInputStream.readObject();//el  server me devuelve el objeto para ver si esta sano
         //System.out.println("Recibido de Cliente:"+resultado.getNombreCliente());//me imprime un string modificado en el server
-        socket.close();
+        //socket.close();
     }
 
     @Override
