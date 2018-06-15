@@ -13,9 +13,9 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import Clases.Platillo;
+import java.util.Arrays;
 
-
-public class reader {
+public class Reader {
     
    
    public Platillo[] XMLReader(){
@@ -67,13 +67,20 @@ public class reader {
                platillo.setCantidadPlatos(Integer.parseInt(eElement.getElementsByTagName("CantPlatos").item(0).getTextContent()));
                //System.out.println("calorias : " 
                //   + eElement.getElementsByTagName("calorias").item(0).getTextContent());
-               platillo.setCantidadPlatos(Integer.parseInt(eElement.getElementsByTagName("calorias").item(0).getTextContent()));
+               platillo.setCalorias(Integer.parseInt(eElement.getElementsByTagName("calorias").item(0).getTextContent()));
                
                
                platillo.setKilokcalPorGramo(Double.parseDouble(eElement.getElementsByTagName("kilokcalPorGramo").item(0).getTextContent()));
                
                
-               platillo.setKilokcalPorGramo(Double.parseDouble(eElement.getElementsByTagName("gramosPorPorcion").item(0).getTextContent()));
+               platillo.setGramosPorPorcion(Double.parseDouble(eElement.getElementsByTagName("gramosPorPorcion").item(0).getTextContent()));
+               
+               String[] byteValues = (eElement.getElementsByTagName("imagen").item(0).getTextContent()).substring(1, eElement.getElementsByTagName("imagen").item(0).getTextContent().length() - 1).split(",");
+               byte[] bytes = new byte[byteValues.length];
+               for (int i=0, len=bytes.length; i<len; i++) {
+                    bytes[i] = Byte.parseByte(byteValues[i].trim());     
+                }
+               platillo.setImagen(bytes);
                listaPlatillos[temp] = platillo;
                
                
@@ -93,7 +100,7 @@ public class reader {
    }
    
    public static void main(String[] args) {
-       reader xml = new reader();
+       Reader xml = new Reader();
        Platillo[] lplatillo = new Platillo[100];
        lplatillo = xml.XMLReader();
        
