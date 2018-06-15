@@ -6,6 +6,7 @@
 package Vista.Servidor;
 
 import Clases.Platillo;
+import Clases.TipoPlatillo;
 import Clases.imgHandler;
 import java.io.File;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
 
     public Platillo platillo;
     private File Archivo;
-    private byte[] bytesIMG;
+    public byte[] bytesIMG=null;
     private imgHandler gestion=new imgHandler();
     private javax.swing.JFileChooser selected = new javax.swing.JFileChooser();
     private ArrayList<String> platillos;
@@ -52,7 +53,6 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
         txfCaloriasPorcion = new javax.swing.JTextField();
         txfPrecio = new javax.swing.JTextField();
         btnCrear = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
         btnAnadirIMG = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -80,17 +80,10 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
             }
         });
 
-        btnCrear.setText("Crear");
+        btnCrear.setText("Crear plato");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);
-            }
-        });
-
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
             }
         });
 
@@ -138,42 +131,35 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnCrear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addComponent(radioPoste))
+                        .addComponent(jLabel6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnCrear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAnadirIMG)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(radioEntrada)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(radioPlatoF))
-                                    .addComponent(txfNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                    .addComponent(txfDescripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                    .addComponent(txtTipoPorcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                    .addComponent(txfCaloriasPorcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                    .addComponent(txfPrecio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                    .addComponent(txtGramoporcion, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtkcalGrano, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(radioPoste)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(radioEntrada)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(radioPlatoF))
+                    .addComponent(txfNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txfDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTipoPorcion, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txfCaloriasPorcion, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txfPrecio, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtGramoporcion, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtkcalGrano, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAnadirIMG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,17 +200,12 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrear)
-                    .addComponent(btnVolver)
                     .addComponent(btnAnadirIMG))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         boolean esNuevo=true;
@@ -236,28 +217,30 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
         }
         if(esNuevo){
             platillo= new Platillo();
+            TipoPlatillo hh=null;
             if(radioEntrada.isSelected()){
                 platillo.setCodClave("ETR"+platillo.getNombre());
+                hh=TipoPlatillo.ETR;
             }else if(radioPlatoF.isSelected()){
                 platillo.setCodClave("PRN"+platillo.getNombre());
+                hh=TipoPlatillo.PRN;
             }else if(radioPoste.isSelected()){
                 platillo.setCodClave("PTR"+platillo.getNombre());
+                hh=TipoPlatillo.PTR;
             }else{
                 esNuevo=false;
             }
             if(esNuevo){
-                platillo.setCalorias(Integer.parseInt(txfCaloriasPorcion.getText()));
-                platillo.setDescripcion(txfDescripcion.getText());
-                platillo.setNombre(txfNombre.getText());
-                platillo.setPrecio(Double.parseDouble(txfPrecio.getText()));
-                platillo.setTipoPorcion(txtTipoPorcion.getText());
-                platillo.setHabilitado(true);
-                platillo.setCantPedidos(0);
-                platillo.setGramosPorPorcion(Double.valueOf(txtGramoporcion.getText()));
-                platillo.setKilokcalPorGramo(Double.valueOf(txtkcalGrano.getText()));
-                platillo.setImagen(bytesIMG);
-                JOptionPane.showMessageDialog(this, "Plato Creado Correctamente");
+                platillo= new Platillo(txfNombre.getText(), txfDescripcion.getText(), Double.parseDouble(txfPrecio.getText()),
+                    txtTipoPorcion.getText(), "Bebida"+txfNombre.getText(), Integer.parseInt(txfCaloriasPorcion.getText()),
+                    Double.valueOf(txtkcalGrano.getText()), Double.valueOf(txtGramoporcion.getText()), hh);
+                if(bytesIMG!=null){
+                   platillo.setImagen(bytesIMG); 
+                }
+                
+                setVoid();
                 platoValido=true;
+                JOptionPane.showMessageDialog(this, "Plato Creado Correctamente");
             }else{
                 JOptionPane.showMessageDialog(this, "Seleccione una categoria de plato");
             }
@@ -267,6 +250,15 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCrearActionPerformed
 
+    public void setVoid(){
+        txfCaloriasPorcion.setText("");
+        txfDescripcion.setText("");
+        txfNombre.setText("");
+        txfPrecio.setText("");
+        txtTipoPorcion.setText("");
+        txtGramoporcion.setText("");
+        txtkcalGrano.setText("");
+    }
     
     private void btnAnadirIMGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirIMGActionPerformed
         if(selected.showDialog(this, "Abrir Archivo")== JFileChooser.APPROVE_OPTION){
@@ -289,11 +281,11 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtkcalGranoActionPerformed
 
-    private void radioPosteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPosteActionPerformed
+    private void radioPlatoFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPlatoFActionPerformed
         radioEntrada.setSelected(false);
-        radioPlatoF.setSelected(false);
-        radioPoste.setSelected(true);
-    }//GEN-LAST:event_radioPosteActionPerformed
+        radioPlatoF.setSelected(true);
+        radioPoste.setSelected(false);
+    }//GEN-LAST:event_radioPlatoFActionPerformed
 
     private void radioEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEntradaActionPerformed
         radioEntrada.setSelected(true);
@@ -301,17 +293,16 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
         radioPoste.setSelected(false);
     }//GEN-LAST:event_radioEntradaActionPerformed
 
-    private void radioPlatoFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPlatoFActionPerformed
+    private void radioPosteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPosteActionPerformed
         radioEntrada.setSelected(false);
-        radioPlatoF.setSelected(true);
-        radioPoste.setSelected(false);
-    }//GEN-LAST:event_radioPlatoFActionPerformed
+        radioPlatoF.setSelected(false);
+        radioPoste.setSelected(true);
+    }//GEN-LAST:event_radioPosteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAnadirIMG;
-    private javax.swing.JButton btnCrear;
-    private javax.swing.JButton btnVolver;
+    public javax.swing.JButton btnAnadirIMG;
+    public javax.swing.JButton btnCrear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -319,16 +310,16 @@ public class CreadorNoBebidas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton radioEntrada;
-    private javax.swing.JRadioButton radioPlatoF;
-    private javax.swing.JRadioButton radioPoste;
-    private javax.swing.JTextField txfCaloriasPorcion;
-    private javax.swing.JTextField txfDescripcion;
-    private javax.swing.JTextField txfNombre;
-    private javax.swing.JTextField txfPrecio;
-    private javax.swing.JTextField txtGramoporcion;
-    private javax.swing.JTextField txtTipoPorcion;
-    private javax.swing.JTextField txtkcalGrano;
+    public javax.swing.JRadioButton radioEntrada;
+    public javax.swing.JRadioButton radioPlatoF;
+    public javax.swing.JRadioButton radioPoste;
+    public javax.swing.JTextField txfCaloriasPorcion;
+    public javax.swing.JTextField txfDescripcion;
+    public javax.swing.JTextField txfNombre;
+    public javax.swing.JTextField txfPrecio;
+    public javax.swing.JTextField txtGramoporcion;
+    public javax.swing.JTextField txtTipoPorcion;
+    public javax.swing.JTextField txtkcalGrano;
     // End of variables declaration//GEN-END:variables
 
 
